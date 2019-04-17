@@ -1,15 +1,10 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-import os
-
 # Init app
 app = Flask(__name__)
-basedir = os.path.abspath(os.path.dirname(__file__))
 # Datenbank konfig
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
-    os.path.join(basedir, 'db.sqlite')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config.from_pyfile('config.py')
 # Erstellen von db
 db = SQLAlchemy(app)
 # Marschmallow initieren
@@ -30,7 +25,6 @@ class Book(db.Model):
         self.author = author
         self.description = description
         self.price = price
-
 # Buchschema zur ausgabe einrichten
 
 
@@ -44,6 +38,7 @@ book_schema = BookSchema(strict=True)
 book_schemas = BookSchema(many=True, strict=True)
 
 # Erstellen Book (Post)
+
 
 @app.route('/book', methods=['POST'])
 def add_Book():
@@ -88,14 +83,14 @@ def update_Book(id):
     return book_schema.jsonify(update_Book)
 
 
-@app.route('book/<id>', methods=['DELETE'])
-def deleteBook(id):
-    book_To_Delete = Book.query.get(id)
-    db.session.delete(book_To_Delete)
+@app.route('/product/<id>', methods=['DELETE'])
+def delete_product(id):
+    book_to_delete = Product.query.get(id)
+    db.session.delete(book_to_delete)
     db.session.commit()
 
-    return BookSchema.jsonify(book_To_Delete)
+    return book_schema.jsonify(book_to_delete)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
