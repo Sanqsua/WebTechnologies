@@ -41,17 +41,16 @@ def update_Book(id):
     description = request.json['description']
     price = request.json['price']
 
-    product.name = name
-    product.price = price
-    product.description = description
-    product.author = author
+    updated_book.name = name
+    updated_book.price = price
+    updated_book.description = description
+    updated_book.author = author
     db.session.commit()
+    return book_schema.jsonify(updated_book)
 
-    return book_schema.jsonify(update_Book)
 
-
-@app.route('/product/<id>', methods=['DELETE'])
-def delete_product(id):
+@app.route('/book/<id>', methods=['DELETE'])
+def delete_book(id):
     book_to_delete = Book.query.get(id)
     db.session.delete(book_to_delete)
     db.session.commit()
