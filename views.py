@@ -1,4 +1,4 @@
-from main_app import app, db, ma
+from mainApp import app, db, ma
 from flask import request, jsonify
 from BookModel import Book, BookSchema
 
