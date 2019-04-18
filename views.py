@@ -1,43 +1,10 @@
-from flask import Flask, request, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
-# Init app
-app = Flask(__name__)
-# Datenbank konfig
-app.config.from_pyfile('config.py')
-# Erstellen von db
-db = SQLAlchemy(app)
-# Marschmallow initieren
-ma = Marshmallow(app)
-
-# Books /Model
-
-
-class Book(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), unique=True)
-    author = db.Column(db.String(30))
-    description = db.Column(db.String(300))
-    price = db.Column(db.Float)
-
-    def __init__(self, name, author, description, price):
-        self.name = name
-        self.author = author
-        self.description = description
-        self.price = price
-# Buchschema zur ausgabe einrichten
-
-
-class BookSchema(ma.Schema):
-    class Meta:
-        fields = ('id', 'name', 'author', 'description', 'price')
-
-
-# schema initieren
-book_schema = BookSchema(strict=True)
-book_schemas = BookSchema(many=True, strict=True)
+from main_app import app, db, ma
+from flask import request, jsonify
+from BookModel import Book, BookSchema
 
 # Erstellen Book (Post)
+book_schema = BookSchema(strict=True)
+book_schemas = BookSchema(many=True, strict=True)
 
 
 @app.route('/book', methods=['POST'])
@@ -85,12 +52,8 @@ def update_Book(id):
 
 @app.route('/product/<id>', methods=['DELETE'])
 def delete_product(id):
-    book_to_delete = Product.query.get(id)
+    book_to_delete = Book.query.get(id)
     db.session.delete(book_to_delete)
     db.session.commit()
 
     return book_schema.jsonify(book_to_delete)
-
-
-if __name__ == "__main__":
-    app.run()
