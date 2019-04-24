@@ -18,7 +18,7 @@
     <meta name="theme-color" content="#ffffff">
     <!-- end favicon  -->
 
-    <!-- bootstrap CDN (will be replaced with npm?) -->
+    <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Optional JavaScript -->
@@ -39,56 +39,63 @@
 
 <body>
 
-    <nav class="navbar navbar-default bg-light fixed-top ">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <img src="../assets/images/placeholder-image.png" width="30" height="30"
-                        class="d-inline-block align-top" alt="Logo">
-                    Prototype ANTHIM
-                </a>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-default bg-light fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <img src="../assets/images/placeholder-image.png" width="30" height="30"
+                            class="d-inline-block align-top" alt="Logo">
+                        Prototype ANTHIM
+                    </a>
+                </div>
+
+                <ul class="nav navbar-nav">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Sign in
+                    </button>
+                </ul>
             </div>
+        </nav>
 
-            <ul class="nav navbar-nav">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                    Sign in
-                </button>
-            </ul>
-        </div>
-    </nav>
+        <!-- Login -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                    <form class="form-signin">
+                        <img class="mb-4" src="../assets/images/placeholder-image.png" alt="" width="72" height="72">
+                        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required
+                            autofocus>
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" value="remember-me"> Remember me
+                            </label>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content text-center">
-                <form class="form-signin">
-                    <img class="mb-4" src="../assets/images/placeholder-image.png" alt="" width="72" height="72">
-                    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                    <label for="inputEmail" class="sr-only">Email address</label>
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required
-                        autofocus>
-                    <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                    <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" value="remember-me"> Remember me
-                        </label>
-                    </div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    </header>
+
 
     <main>
+        <!-- Adverts -->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-md-4 text-center">
@@ -135,6 +142,8 @@
         </div>
     </main>
 
+
+    <!-- Footer-->
     <footer class="page-footer font-small bottom">
         <div class="text-center py-3">
             <a href="#!">Privacy Policy</a>

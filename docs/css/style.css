@@ -2,6 +2,8 @@ body {
   padding-top: 70px;
 }
 
+/* Signin Tempplate Bootstrap https://getbootstrap.com/docs/4.1/examples/sign-in/ */
+
 .form-signin {
   width: 100%;
   max-width: 330px;
@@ -36,3 +38,30 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+
+
+/*https://codepen.io/aneekul/post/columnar-independence*/
+
+/*Set the row height to the viewport*/
+.row-height{
+  height: 80vh;
+}
+
+/*Set up the columns with a 100% height, body color and overflow scroll*/
+
+.scoll-adverts{
+  height: 100%;
+  overflow-y: scroll;
+}
+
+/*Remove the scrollbar from Chrome, Safari, Edge and IE*/
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+* {
+  -ms-overflow-style: none !important;
+}
+
