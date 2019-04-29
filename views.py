@@ -1,12 +1,12 @@
-from mainApp import app, db, ma
+from app import app, db, ma
 from flask import request, jsonify
-from BookModel import Book, BookSchema
+from models.BookModel import Book, BookSchema
 
 # Erstellen Book (Post)
 book_schema = BookSchema(strict=True)
 book_schemas = BookSchema(many=True, strict=True)
 
-
+#buch adden
 @app.route('/book', methods=['POST'])
 def add_Book():
     name = request.json['name']

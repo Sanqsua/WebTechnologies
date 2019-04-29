@@ -1,4 +1,3 @@
-from views import *
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
@@ -11,6 +10,7 @@ db = SQLAlchemy(app)
 # Marschmallow initieren
 ma = Marshmallow(app)
 
+from views import *
 
 if __name__ == "__main__":
     app.run()

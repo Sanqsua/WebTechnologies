@@ -1,5 +1,5 @@
-from mainApp import db
-from mainApp import ma
+from app import db
+from app import ma
 
 
 class Book(db.Model):
@@ -8,7 +8,7 @@ class Book(db.Model):
     author = db.Column(db.String(30))
     description = db.Column(db.String(300))
     price = db.Column(db.Float)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), ondelete='CASCADE')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     
     def __init__(self, name, author, description, price):
         self.name = name
