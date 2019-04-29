@@ -1,6 +1,6 @@
 from app import app, db, ma
 from flask import request, jsonify
-from models.BookModel import Book, BookSchema
+from BookModel import Book, BookSchema
 
 # Erstellen Book (Post)
 book_schema = BookSchema(strict=True)
