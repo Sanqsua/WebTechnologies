@@ -1,12 +1,17 @@
 from app import app, db, ma
 from flask import request, jsonify
-from models.BookModel import Book, BookSchema
+from BookModel import Book, BookSchema
+from UserModel import User, UserSchema
 
+# Bücher erstellen
 # Erstellen Book (Post)
 book_schema = BookSchema(strict=True)
 book_schemas = BookSchema(many=True, strict=True)
 
-#buch adden
+user_schema = UserSchema(strict=True)
+user_schemas = UserSchema(many=True, strict=True)
+
+# buch adden
 @app.route('/book', methods=['POST'])
 def add_Book():
     name = request.json['name']
@@ -56,3 +61,32 @@ def delete_book(id):
     db.session.commit()
 
     return book_schema.jsonify(book_to_delete)
+
+
+# User
+#add
+@app.route('/user', methods=['POST'])
+def addUser():
+    userName = request.json['userName']
+    password = request.json['password']
+    email = request.json['email']
+
+    userToAdd = User(userName, password, email)
+    db.session.add(userToAdd)
+    db.session.commit()
+    return user_schema.jsonify(userToAdd)
+
+
+@app.route('/user', methods=['GET'])
+def getUsers():
+    allUsers = User.query.all()
+    result = user_schemas.dump(allUsers)
+    return jsonify(result.data)
+
+
+@app.route('/user/<id>', methods=['DELETE'])
+def deleteUser(id):
+    userToDelete = User.query.get(id)
+    db.session.delete(userToDelete)
+    db.session.commit()
+    return user_schema.jsonify(userToDelete)
