@@ -1,6 +1,7 @@
 /* Component, Header Startpage (Navbar) */
 
 import React from "react";
+import { Link} from 'react-router-dom';
 
 import placeholderImg from './../assets/placeholder-image.png';
 
@@ -27,6 +28,15 @@ export class Header extends React.Component {
                   Sign in
                 </button>
               </ul>
+              {/* TESTING*/}
+              <ul>
+    <li>
+     <Link to="/">Startpage</Link>
+     </li>
+    <li>
+    <Link to="/home">Home</Link>
+     </li>
+     </ul>
             </div>
           </nav>
           </header>

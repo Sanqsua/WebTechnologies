@@ -20,7 +20,7 @@ function App() {
         <Login/>
         <Main/>
         <Footer/> 
-        
+              
     </div>
   );
 }
