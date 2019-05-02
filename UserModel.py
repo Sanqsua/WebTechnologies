@@ -14,7 +14,7 @@ class User(db.Model):
         self.password = password
         self.email = email
 
-class UserSchema(ma.Schema): 
+class UserSchema(ma.ModelSchema): 
     class Meta:
-        fields = ('id','name','password','email')
+        # fields = ('id','name','password','email')
         model = User 
