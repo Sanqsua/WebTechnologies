@@ -17,9 +17,9 @@ def add_Book():
     author = request.json['author']
     description = request.json['description']
     price = request.json['price']
-    # user_id = request.json['user_id']
+    user_id = request.json['user_id']
 
-    new_Book = Book(name, author, description, price)
+    new_Book = Book(name, author, description, price,user_id)
     db.session.add(new_Book)
     db.session.commit()
     return book_schema.jsonify(new_Book)

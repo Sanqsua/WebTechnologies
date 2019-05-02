@@ -17,7 +17,7 @@ class Book(db.Model):
         self.price = price
         self.user_id = user_id
 
-class BookSchema(ma.Schema):
+class BookSchema(ma.ModelSchema):
     class Meta:
-        fields = ('id', 'name', 'author', 'description', 'price')
-
+        # fields = ('id', 'name', 'author', 'description', 'price')
+        model = Book

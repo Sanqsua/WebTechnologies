@@ -4,10 +4,10 @@ from app import ma
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = (db.String(30))
-    password = (db.String(30))
-    email = (db.String(50))
-    # books = db.relationship('Book', backref='user')
+    name = db.Column(db.String(30), unique=True)
+    password = db.Column(db.String(30))
+    email = db.Column(db.String(50))
+    books = db.relationship('Book', backref='user')
 
     def __init__(self, name, password, email):
         self.name = name
@@ -16,5 +16,5 @@ class User(db.Model):
 
 class UserSchema(ma.Schema): 
     class Meta:
-        # fields = ('id','name','password','email')
+        fields = ('id','name','password','email')
         model = User 
