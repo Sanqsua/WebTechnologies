@@ -11,6 +11,8 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
 from views import *
+db.create_all()
+db.session.commit()
 
 if __name__ == "__main__":
     app.run()

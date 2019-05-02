@@ -1,20 +1,25 @@
 from app import app, db, ma
 from flask import request, jsonify
 from BookModel import Book, BookSchema
+from UserModel import User, UserSchema
 
+# Bücher erstellen
 # Erstellen Book (Post)
 book_schema = BookSchema(strict=True)
 book_schemas = BookSchema(many=True, strict=True)
+user_schema = UserSchema(strict=True)
+user_schemas = UserSchema(many=True,strict = True)
 
-#buch adden
+# buch adden
 @app.route('/book', methods=['POST'])
 def add_Book():
     name = request.json['name']
     author = request.json['author']
     description = request.json['description']
     price = request.json['price']
+    user_id = request.json['user_id']
 
-    new_Book = Book(name, author, description, price)
+    new_Book = Book(name, author, description, price,user_id)
     db.session.add(new_Book)
     db.session.commit()
     return book_schema.jsonify(new_Book)
@@ -34,13 +39,13 @@ def get_Book_by_id(id):
 
 # update(put request) an sich genau so wie add, nur anders
 @app.route('/book/<id>', methods=['PUT'])
-def update_Book(id):
+def update_Book(book_id):
     updated_book = Book.query.get(id)
     name = request.json['name']
     author = request.json['author']
     description = request.json['description']
     price = request.json['price']
-
+    
     updated_book.name = name
     updated_book.price = price
     updated_book.description = description
@@ -56,3 +61,38 @@ def delete_book(id):
     db.session.commit()
 
     return book_schema.jsonify(book_to_delete)
+
+
+# User
+#add
+
+@app.route('/user', methods=['POST'])
+def addUser():
+    name = request.json['name']
+    password = request.json['password']
+    email = request.json['email']
+
+    userToAdd = User(name, password, email)
+    db.session.add(userToAdd)
+    db.session.commit()
+    return user_schema.jsonify(userToAdd)
+
+#get userbyid
+@app.route('/user/<id>',methods=['GET'])
+def get_User_by_id(id):
+    userToGet = User.query.get(id)
+    return user_schema.jsonify(userToGet)
+
+#Getallusers
+@app.route('/user', methods=['GET'])
+def get_Users():
+    all_Users = User.query.all()
+    result = user_schemas.dump(all_Users)
+    return jsonify(result.data)
+
+@app.route('/user/<id>', methods=['DELETE'])
+def deleteUser(id):
+    userToDelete = User.query.get(id)
+    db.session.delete(userToDelete)
+    db.session.commit()
+    return user_schema.jsonify(userToDelete)
