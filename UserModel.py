@@ -1,5 +1,5 @@
-# from app import db
-# from app import ma
+from app import db
+from app import ma
 
 
 class User(db.Model):
