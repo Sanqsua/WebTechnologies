@@ -3,9 +3,9 @@
  import React from 'react';
 
  /* Components */
- import { Header_Home } from "./components/Header_Home";
- import { Main_Home } from "./components/Main_Home";
- import { Account_Home } from "./components/Account_Home";
+ import { Header_Home } from "./home/Header_Home";
+ import { Main_Home } from "./home/Main_Home";
+ import { Account_Home } from "./home/Account_Home";
 
  /* Stylesheet */
  import './css/style.css';

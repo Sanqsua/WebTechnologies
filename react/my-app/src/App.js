@@ -3,10 +3,10 @@
 import React from 'react';
 
 /* Components */
-import { Header } from "./components/Header";
-import { Login } from "./components//Login";
-import { Footer } from "./components/Footer";
-import { Main } from "./components/Main";
+import { Header } from "./startpage/Header";
+import { Login } from "./startpage/Login";
+import { Footer } from "./startpage/Footer";
+import { Main } from "./startpage/Main";
 
 /* Stylesheet */
 import './css/style.css';
