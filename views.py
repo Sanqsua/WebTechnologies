@@ -39,7 +39,7 @@ def get_Book_by_id(id):
 
 # update(put request) an sich genau so wie add, nur anders
 @app.route('/book/<id>', methods=['PUT'])
-def update_Book(book_id):
+def update_Book(id):
     updated_book = Book.query.get(id)
     name = request.json['name']
     author = request.json['author']
@@ -63,9 +63,8 @@ def delete_book(id):
     return book_schema.jsonify(book_to_delete)
 
 
-# User
+# Users
 #add
-
 @app.route('/user', methods=['POST'])
 def addUser():
     name = request.json['name']
@@ -90,9 +89,23 @@ def get_Users():
     result = user_schemas.dump(all_Users)
     return jsonify(result.data)
 
+#delete
 @app.route('/user/<id>', methods=['DELETE'])
 def deleteUser(id):
     userToDelete = User.query.get(id)
     db.session.delete(userToDelete)
     db.session.commit()
     return user_schema.jsonify(userToDelete)
+
+@app.route('/user/<id>', methods=['PUT'])
+def update_user(id):
+    user_to_update = User.query.get(id) 
+    name = request.json['name']
+    password = request.json['password']
+    email = request.json['email']
+
+    user_to_update.name = name
+    user_to_update.password = password
+    user_to_update.email = email
+    db.session.commit()
+    return user_schema.jsonify(user_to_update)
