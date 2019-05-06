@@ -2,6 +2,9 @@ body {
   padding-top: 70px;
 }
 
+
+
+
 /* Signin Tempplate Bootstrap https://getbootstrap.com/docs/4.1/examples/sign-in/ */
 
 .form-signin {
@@ -40,6 +43,16 @@ body {
 }
 
 
+/* START */
+main h1 {
+  font-size: 1.2em;
+}
+
+.gray {
+  background-color: whitesmoke;
+}
+
+/* HOME */
 /*https://codepen.io/aneekul/post/columnar-independence*/
 
 /*Set the row height to the viewport*/
