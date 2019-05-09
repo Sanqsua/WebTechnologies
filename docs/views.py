@@ -1,5 +1,5 @@
 from app import app, db, ma
-from flask import request, jsonify
+from flask import request, jsonify, render_template
 from BookModel import Book, BookSchema
 from UserModel import User, UserSchema
 
@@ -9,6 +9,11 @@ book_schema = BookSchema(strict=True)
 book_schemas = BookSchema(many=True, strict=True)
 user_schema = UserSchema(strict=True)
 user_schemas = UserSchema(many=True,strict = True)
+
+@app.route('/')
+def renderHome():
+    # return render_template('home.html')
+     return render_template('home.html')
 
 # buch adden
 @app.route('/book', methods=['POST'])

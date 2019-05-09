@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 # Init app
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='/static')
 # Datenbank konfig
 app.config.from_pyfile('config.py')
 # Erstellen von db
