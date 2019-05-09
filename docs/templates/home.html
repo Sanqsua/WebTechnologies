@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>HOME - ANTHIM</title>
+    <title>Home | Book Road</title>
 
     <!-- start favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicons/apple-touch-icon.png">
@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -30,25 +29,25 @@
 
     <header>
         <!-- Navbar -->
-        <nav class="navbar navbar-default bg-light fixed-top">
+        <nav class="navbar navbar-default fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        <img src="../assets/images/placeholder-image.png" width="30" height="30"
+                    <a class="navbar-brand shadow-none" href="startpage.html">
+                        <img src="../assets/images/logo_nav.png" class="rounded-circle" width="40" height="40"
                             class="d-inline-block align-top" alt="Logo">
-                        Prototype ANTHIM
+                        <span class="ml-1">Book Road</span>
                     </a>
                 </div>
 
                 <ul class="nav navbar-right">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Startpage</a>
+                        <a class="nav-link shadow-none" href="startpage.html">Startpage</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#exampleModalCenter" data-toggle="modal"
                             data-target="#exampleModalCenter">Account</a>
                     </li>
-                    <button type="button" class="btn btn-primary" data-toggle="modal">
+                    <button type="button" class="btn btn-primary ml-4 shadow-none" data-toggle="modal">
                         Sign out
                     </button>
                 </ul>
@@ -82,14 +81,15 @@
         <div class="container-fluid">
             <div class="row row-height">
                 <!-- Adverts -->
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 mb-4">
                     <form class="form-inline my-auto my-lg-0 text-center">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        <input class="form-control mr-sm-2 shadow-none" type="search" placeholder="Search"
+                            aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0 shadow-none" type="submit">Search</button>
                     </form>
                 </div>
-                <div class="col-12 col-md-6 text-center">
-                    <h1>Create und edit your adverts</h1>
+                <div class="col-12 col-md-6 text-center mb-4">
+                    <h1>Create your adverts</h1>
                 </div>
                 <div class="col-12 col-md-6 scoll-adverts">
                     <div class="row">
@@ -97,6 +97,10 @@
                             alt="placeholder-image">
                         <h1>Placeholder Title</h1>
                         <p>Placeholder Price</p>
+                        <div>
+                        <button class="btn btn-primary shadow-none" type="submit">Delete</button>
+                        <button class="btn btn-primary shadow-none" type="submit">Edit</button>
+                        </div>
                     </div>
                     <div class="row">
                         <img src="../assets/images/placeholder-image.png" width="100" height="100"
@@ -169,19 +173,20 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-xs-2">
-                                <label for="exampleFormControlInput1">Price</label>
+                                <label for="exampleFormControlInput1">Price in €</label>
                                 <input class="form-control" type="text" placeholder="Price">
                             </div>
                         </div>
                         <div class="text-center">
-                            <button class="btn btn-primary" type="reset">Reset</button>
-                            <button class="btn btn-primary" type="submit">Submit</button>
+                            <button class="btn btn-primary shadow-none" type="reset">Reset</button>
+                            <button class="btn btn-primary shadow-none" type="submit">Submit</button>
                         </div>
                     </form>
                 </div>
             </div>
     </main>
 
+    <!-- TO-DO CHECK WHAT IS NEEDED -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
