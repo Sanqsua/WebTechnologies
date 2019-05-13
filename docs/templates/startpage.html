@@ -8,7 +8,7 @@
 
     <title>Book Road</title>
 
-    <!-- start favicon -->
+    <!-- favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="../static/assets/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../static/assets/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../static/assets/favicons/favicon-16x16.png">
@@ -16,13 +16,15 @@
     <link rel="mask-icon" href="../static/assets/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
-    <!-- end favicon  -->
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <!-- stylesheet -->
     <link rel="stylesheet" href="../static/css/style.css">
+
+
 </head>
 
 <body>
@@ -39,6 +41,7 @@
                     </a>
                 </div>
 
+                <!-- Search adverts FLASK -->
                 <ul class="nav navbar-nav">
                     <form class="form-inline my-2 my-lg-0" method=post>
                         <input class="form-control mr-sm-2 shadow-none" type="search" placeholder="Search"
@@ -48,6 +51,7 @@
                     </form>
                 </ul>
 
+                <!-- Sign in -->
                 <ul class="nav navbar-nav navbar-right">
                     <button type="button" class="btn btn-primary shadow-none" data-toggle="modal"
                         data-target="#exampleModalCenter">
@@ -57,12 +61,12 @@
             </div>
         </nav>
 
-
-        <!-- Login -->
+        <!-- Sign in modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content text-center">
+                    <!-- Sign in FLASK -->
                     <form class="form-signin">
                         <img class="mb-2" src="../static/assets/images/login_logo.png" alt="" width="150" height="150">
                         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -72,7 +76,6 @@
                         <label for="inputPassword" class="sr-only">Password</label>
                         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                         <button class="btn btn-lg btn-primary btn-block shadow-none" type="submit">Sign in</button>
-
                     </form>
                 </div>
             </div>
@@ -81,33 +84,32 @@
 
     <main>
         <div class="container-fluid">
+            <!-- Adverts FLASK -->
             <div class="row">
-                {% if books|length != 0 %}
-                {% for book in books %}
-                <div class="col-12 col-md-4 p-3 bg-light">
-                    <img class="float-left text-center" src="../static/assets/images/placeholder-image.png"
-                        alt="placeholder-image" width=100 height=100 />
-                    <div class="overflow-hidden color-black">
-                        <h1 class="ml-2">{{book.title}}</h1>
-                        <p class="ml-2 font-italic">{{book.author}}</p>
-                        <p class="ml-2 font-weight-bold">{{book.price}}€</p>
-                        <p class="ml-2">Description: {{book.description}}</p>
-                        <!-- Email? wie aufrufen?-->
-                        {% for user in users %}
-                        {% if user.id = book.user_id %}
-                        <a class="ml-2" href="mailto:{{user.email}}?subject=Your Advert: NameofBook">Send Email</a>
-                        {% endfor %}
-                        {% endif %}
+                <div class="col-12 col-md-4 p-3">
+                    <div class="bg-light">
+                        <h1 class="ml-2">Harry Potter: Eine Geschichte voller Magie Harry Potter: Eine Geschichte voller
+                            Magie Harry Potter: Eine Geschichte voller Magie </h1>
+                        <img class="float-left text-center" src="../static/assets/images/books.png"
+                            alt="placeholder-image" width=100 height=100 />
+                        <div class="overflow-hidden color-black p-0 box">
+                            <div class="float-left">
+                                <p class="ml-2 my-1 font-italic">Author: Hans Müller</p>
+                                <p class="ml-2 my-1 font-weight-bold">Price: 30€</p>
+                                <p><a class="ml-2 my-1 color-black" tabindex="0" data-toggle="popover"
+                                        data-trigger="focus" data-placement="bottom" title="Description" data-content="Harry Potter: Eine Geschichte voller Magie Harry Potter: Eine Geschichte voller
+                                Magie Harry Potter: Eine Geschichte voller MagieHarry Potter: Eine Geschichte voller Magie Harry Potter: Eine Geschichte voller
+                                Magie Harry Potter: Eine Geschichte voller Magie">Description ▼</a></p>
+                            </div>
+                            <div class="email">
+                                <a class="h1" href="mailto:{{user.email}}?subject=Your Advert: NameofBook">✉</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                {% endfor %}
-                    {% else %}
-                <i>There are no books.</i>
-                {% endif %}
             </div>
         </div>
     </main>
-
 
     <!-- Footer-->
     <footer class="page-footer font-small bottom">
@@ -130,6 +132,15 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+        $('.popover-dismiss').popover({
+            trigger: 'focus'
+        })
     </script>
 </body>
 

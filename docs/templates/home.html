@@ -8,7 +8,7 @@
 
     <title>Home | Book Road</title>
 
-    <!-- start favicon -->
+    <!-- favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="../static/assets/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../static/assets/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../static/assets/favicons/favicon-16x16.png">
@@ -16,12 +16,12 @@
     <link rel="mask-icon" href="../static/assets/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
-    <!-- end favicon  -->
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <!-- stylesheet -->
     <link rel="stylesheet" href="../static/css/style.css">
 </head>
 
@@ -32,6 +32,7 @@
         <nav class="navbar navbar-default fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <!-- Render startpage FLASK -->
                     <a class="navbar-brand shadow-none" href="startpage.html">
                         <img src="../static/assets/images/logo_nav.png" class="rounded-circle" width="40" height="40"
                             class="d-inline-block align-top" alt="Logo">
@@ -40,6 +41,7 @@
                 </div>
 
                 <ul class="nav navbar-right">
+                    <!-- Render startpage FLASK -->
                     <li class="nav-item">
                         <a class="nav-link shadow-none" href="startpage.html">Startpage</a>
                     </li>
@@ -47,6 +49,7 @@
                         <a class="nav-link" href="#exampleModalCenter" data-toggle="modal"
                             data-target="#exampleModalCenter">Account</a>
                     </li>
+                    <!-- Sign out FLASK -->
                     <button type="button" class="btn btn-primary ml-4 shadow-none" data-toggle="modal">
                         Sign out
                     </button>
@@ -54,11 +57,12 @@
             </div>
         </nav>
 
-        <!-- Account -->
+        <!-- Account modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content text-center">
+                    <!-- Account FLASK -->
                     <form class="form-signin ">
                         <h1 class="h3 mb-3 font-weight-normal">Your Account</h1>
                         <p class="text-left">Username: blabla</p>
@@ -77,10 +81,10 @@
     </header>
 
     <main>
-        <!-- Main content -->
         <div class="container-fluid">
             <div class="row row-height">
-                <!-- Adverts -->
+
+                <!-- Search adverts FLASK -->
                 <div class="col-12 col-md-6 mb-4">
                     <form class="form-inline my-auto my-lg-0 text-center">
                         <input class="form-control mr-sm-2 shadow-none" type="search" placeholder="Search"
@@ -88,72 +92,39 @@
                         <button class="btn btn-outline-success my-2 my-sm-0 shadow-none" type="submit">Search</button>
                     </form>
                 </div>
+
+                <!-- "Create your adverts" title-->
                 <div class="col-12 col-md-6 text-center mb-4">
                     <h1>Create your adverts</h1>
                 </div>
+
+                <!-- Adverts list FLASK  -->
                 <div class="col-12 col-md-6 scoll-adverts">
-                    <div class="row">
-                        <img src="..\static\assets\images\placeholder-image.png" width="100" height="100"
+                    <div class="row bg-white">
+                        <img class="float-left" src="..\static\assets\images\books.png" width="100" height="100"
                             alt="placeholder-image">
-                        <h1>Placeholder Title</h1>
-                        <p>Placeholder Price</p>
+                        <div class="overflow-hidden">
+                            <h1>Das inoffizielle Harry-Potter-Buch der Zauberei: Geheimes Wissen von A wie Accio bis Z
+                                wie Zentaur </h1>
+                        </div>
                         <div>
                             <button class="btn btn-primary shadow-none" type="submit">Delete</button>
                             <button class="btn btn-primary shadow-none" type="submit">Edit</button>
                         </div>
                     </div>
-                    <div class="row">
-                        <img src="..\static\assets\images\placeholder-image.png" width="100" height="100"
-                            alt="placeholder-image">
-                        <h1>Placeholder Title</h1>
-                        <p>Placeholder Price</p>
+                    <div class="row bg-white">
+                        <img src="..\static\assets\images\books.png" width="100" height="100" alt="placeholder-image">
+                        <h1>Das inoffizielle Harry-Potter-Buch der Zauberei:</h1>
+                        <div>
+                            <button class="btn btn-primary shadow-none" type="submit">Delete</button>
+                            <button class="btn btn-primary shadow-none" type="submit">Edit</button>
+                        </div>
                     </div>
-                    <div class="row">
-                        <img src="..\static\assets\images\placeholder-image.png" width="100" height="100"
-                            alt="placeholder-image">
-                        <h1>Placeholder Title</h1>
-                        <p>Placeholder Price</p>
-                    </div>
-                    <div class="row">
-                        <img src="..\static\assets\images\placeholder-image.png" width="100" height="100"
-                            alt="placeholder-image">
-                        <h1>Placeholder Title</h1>
-                        <p>Placeholder Price</p>
-                    </div>
-                    <div class="row">
-                        <img src="..\static\assets\images\placeholder-image.png" width="100" height="100"
-                            alt="placeholder-image">
-                        <h1>Placeholder Title</h1>
-                        <p>Placeholder Price</p>
-                    </div>
-                    <div class="row">
-                        <img src="..\static\assets\images\placeholder-image.png" width="100" height="100"
-                            alt="placeholder-image">
-                        <h1>Placeholder Title</h1>
-                        <p>Placeholder Price</p>
-                    </div>
-                    <div class="row">
-                        <img src="..\static\assets\images\placeholder-image.png" width="100" height="100"
-                            alt="placeholder-image">
-                        <h1>Placeholder Title</h1>
-                        <p>Placeholder Price</p>
-                    </div>
-                    <div class="row">
-                        <img src="\static\assets\images\placeholder-image.png" width="100" height="100"
-                            alt="placeholder-image">
-                        <h1>Placeholder Title</h1>
-                        <p>Placeholder Price</p>
-                    </div>
-                    <div class="row">
-                        <img src="\static\assets\images\placeholder-image.png" width="100" height="100"
-                            alt="placeholder-image">
-                        <h1>Placeholder Title</h1>
-                        <p>Placeholder Price</p>
-                    </div>
+
                 </div>
 
-                <!-- Form -->
-                <div class="col-12 col-md-6">
+                <!-- Form create adverts FLASK  -->
+                <div class="col-12 col-md-6 px-5 pt-3">
                     <form>
                         <div class="form-group row">
                             <label for="exampleFormControlInput1">Title</label>
@@ -166,7 +137,6 @@
                             <label for="exampleFormControlInput1">Author</label>
                             <input class="form-control" type="text" placeholder="Author">
                         </div>
-
                         <div class="form-group row">
                             <label for="exampleFormControlTextarea1">Description</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>

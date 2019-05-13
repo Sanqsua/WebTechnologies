@@ -24,10 +24,12 @@ body {
 }
 
 .color-black a:link,
-.color-black a:visited {
-  color: black;
+.color-black a:visited,
+.color-black,
+.color-black:link,
+.color-black:visited {
+  color: black !important;
 }
-
 
 .btn-primary,
 .btn-outline-success {
@@ -58,6 +60,15 @@ body {
   outline: none !important;
 }
 
+.box {
+  position: relative;
+}
+
+.email {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+}
 
 /* Signin Tempplate Bootstrap https://getbootstrap.com/docs/4.1/examples/sign-in/ */
 
