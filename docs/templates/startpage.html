@@ -86,27 +86,26 @@
         <div class="container-fluid">
             <!-- Adverts FLASK -->
             <div class="row">
+                {% for book in books %}
                 <div class="col-12 col-md-4 p-3">
                     <div class="bg-light">
-                        <h1 class="ml-2">Harry Potter: Eine Geschichte voller Magie Harry Potter: Eine Geschichte voller
-                            Magie Harry Potter: Eine Geschichte voller Magie </h1>
+                        <h1 class="ml-2">{{book.name}}</h1>
                         <img class="float-left text-center" src="../static/assets/images/books.png"
                             alt="placeholder-image" width=100 height=100 />
                         <div class="overflow-hidden color-black p-0 box">
                             <div class="float-left">
-                                <p class="ml-2 my-1 font-italic">Author: Hans Müller</p>
-                                <p class="ml-2 my-1 font-weight-bold">Price: 30€</p>
+                                <p class="ml-2 my-1 font-italic">{{book.author}}</p>
+                                <p class="ml-2 my-1 font-weight-bold">Price: {{book.price}}</p>
                                 <p><a class="ml-2 my-1 color-black" tabindex="0" data-toggle="popover"
-                                        data-trigger="focus" data-placement="bottom" title="Description" data-content="Harry Potter: Eine Geschichte voller Magie Harry Potter: Eine Geschichte voller
-                                Magie Harry Potter: Eine Geschichte voller MagieHarry Potter: Eine Geschichte voller Magie Harry Potter: Eine Geschichte voller
-                                Magie Harry Potter: Eine Geschichte voller Magie">Description ▼</a></p>
+                                        data-trigger="focus" data-placement="bottom" title="Description" data-content="{{book.description}}">Description ▼</a></p>
                             </div>
                             <div class="email">
-                                <a class="h1" href="mailto:{{user.email}}?subject=Your Advert: NameofBook">✉</a>
+                                <a class="h1" href="mailto:{{book.user.email}}?subject=Your Advert: {{book.name}}">✉</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </main>
