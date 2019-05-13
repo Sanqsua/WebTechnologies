@@ -10,11 +10,6 @@ book_schemas = BookSchema(many=True, strict=True)
 user_schema = UserSchema(strict=True)
 user_schemas = UserSchema(many=True,strict = True)
 
-@app.route('/')
-def renderHome():
-    # return render_template('home.html')
-     return render_template('home.html')
-
 # buch adden
 @app.route('/book', methods=['POST'])
 def add_Book():
@@ -30,11 +25,10 @@ def add_Book():
     return book_schema.jsonify(new_Book)
 
 # getAllBooks (alle)
-@app.route('/book', methods=['GET'])
+@app.route('/', methods=['GET'])
 def get_Books():
     all_Books = Book.query.all()
-    result = book_schemas.dump(all_Books)
-    return jsonify(result.data)
+    return render_template('startpage.html', books = all_Books)
 
 # getBook durch <id> (query parameter)
 @app.route('/book/<id>', methods=['GET'])
