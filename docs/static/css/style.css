@@ -70,6 +70,13 @@ body {
   right: 5%;
 }
 
+.del-edit-buttons {
+  position: absolute;
+  top: 5%;
+  right: 1%;
+
+}
+
 /* Signin Tempplate Bootstrap https://getbootstrap.com/docs/4.1/examples/sign-in/ */
 
 .form-signin {
