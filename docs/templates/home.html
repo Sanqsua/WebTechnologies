@@ -19,11 +19,6 @@
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="../static/bootstrap/bootstrap.min.css">
-    <!--
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-   -->
-
 
     <!-- stylesheet -->
     <link rel="stylesheet" href="../static/css/style.css">
@@ -67,7 +62,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content text-center">
                     <!-- Account FLASK -->
-                    <form class="form-signin ">
+                    <form class="form-signin">
                         <h1 class="h3 mb-3 font-weight-normal">Your Account</h1>
                         <p class="text-left">Username: blabla</p>
                         <p class="text-left">Email address: blabla@blala.de</p>
@@ -91,8 +86,8 @@
                 <!-- Search adverts FLASK -->
                 <div class="col-12 col-md-6 my-2">
                     <form class="form-inline my-auto my-lg-0 text-center">
-                        <input class="form-control mr-sm-2 shadow-none" type="search" placeholder="Search"
-                            aria-label="Search">
+                        <input class="form-control mr-sm-2 shadow-none" name="inputSearch" type="search"
+                            placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0 shadow-none" type="submit">Search</button>
                     </form>
                 </div>
@@ -118,7 +113,7 @@
                                         data-content="Descriptionooo">Description ▼</a></p>
                             </div>
 
-                            <!-- -->
+                            <!-- TODO: change buttons to vertical and right bottom corner -->
                             <div class="del-edit-buttons">
                                 <button class="btn btn-primary shadow-none text-right" type="submit">Delete</button>
                                 <button data-toggle="modal" data-target="#editModal"
@@ -208,24 +203,25 @@
                 <div class="col-12 col-md-6 px-5 pt-3">
                     <form>
                         <div class="form-group row">
-                            <label for="exampleFormControlInput1">Title</label>
-                            <input class="form-control" type="text" placeholder="Title">
-                            <div class="invalid-feedback">
-                                Please choose a username.
-                            </div>
+                            <label for="createTitle">Title</label>
+                            <input class="form-control" id="createTitle" name="createTitle" type="text"
+                                placeholder="Title" required>
                         </div>
                         <div class="form-group row">
-                            <label for="exampleFormControlInput1">Author</label>
-                            <input class="form-control" type="text" placeholder="Author">
+                            <label for="createAuthor">Author</label>
+                            <input class="form-control" id="createAuthor" name="createAuthor" type="text"
+                                placeholder="Author" required>
                         </div>
                         <div class="form-group row">
-                            <label for="exampleFormControlTextarea1">Description</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <label for="createDescription">Description</label>
+                            <textarea class="form-control" id="createDescription" name="createDescription" rows="3"
+                                required></textarea>
                         </div>
                         <div class="form-group row">
-                            <div class="col-xs-2">
-                                <label for="exampleFormControlInput1">Price in €</label>
-                                <input class="form-control" type="text" placeholder="Price">
+                            <div class="col-xs-2 p-0">
+                                <label for="createPrice">Price in €</label>
+                                <input class="form-control" id="createPrice" name="createPrice" type="number" min="0"
+                                    min="10000000" placeholder="Price" required>
                             </div>
                         </div>
                         <div class="text-center">
@@ -244,24 +240,25 @@
                         <!-- Edit FLASK -->
                         <form class="p-4">
                             <div class="form-group row">
-                                <label for="exampleFormControlInput1">Title</label>
-                                <input class="form-control" type="text" placeholder="Title">
-                                <div class="invalid-feedback">
-                                    Please choose a username.
-                                </div>
+                                <label for="editTitle">Title</label>
+                                <input class="form-control" id="editTitle" name="editTitle" type="text"
+                                    placeholder="Title" required>
                             </div>
                             <div class="form-group row">
-                                <label for="exampleFormControlInput1">Author</label>
-                                <input class="form-control" type="text" placeholder="Author">
+                                <label for="editAuthor">Author</label>
+                                <input class="form-control" id="editAuthor" name="editAuthor" type="text"
+                                    placeholder="Author" required>
                             </div>
                             <div class="form-group row">
-                                <label for="exampleFormControlTextarea1">Description</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label for="editDescription">Description</label>
+                                <textarea class="form-control" id="editDescription" name="editDescription" rows="3"
+                                    required></textarea>
                             </div>
                             <div class="form-group row">
                                 <div class="col-xs-2 p-0">
-                                    <label for="exampleFormControlInput1">Price in €</label>
-                                    <input class="form-control" type="text" placeholder="Price">
+                                    <label for="editPrice">Price in €</label>
+                                    <input class="form-control" id="editPrice" name="editPrice" type="number" min="0"
+                                        min="10000000" placeholder="Price" required>
                                 </div>
                             </div>
                             <div class="text-center">
@@ -274,18 +271,7 @@
             </div>
     </main>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script> -->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script> -->
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-    -->
+    <!-- Bootstrap JavaScript -->
     <script src="../static/bootstrap/jquery-3.3.1.slim.min.js"></script>
     <script src="../static/bootstrap/popper.min.js"></script>
     <script src="../static/bootstrap/bootstrap.min.js"></script>

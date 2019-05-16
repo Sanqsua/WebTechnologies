@@ -5,7 +5,6 @@ body {
 
 .navbar {
   background-color: #47AC96;
-
 }
 
 .navbar-brand {
@@ -32,7 +31,9 @@ body {
 }
 
 .btn-primary,
-.btn-outline-success {
+.btn-outline-success,
+.btn-primary:focus,
+.btn-outline-success:focus {
   background-color: #47AC96;
   color: white;
   border-color: white;
@@ -45,14 +46,10 @@ body {
   color: #47AC96;
   border-color: #47AC96;
   outline: none !important;
-
-
 }
 
 .btn-primary:active,
-.btn-primary:focus,
 .btn-outline-success:active,
-.btn-outline-success:focus,
 .nav-item a:hover {
   background-color: white !important;
   color: #47AC96 !important;
@@ -74,7 +71,6 @@ body {
   position: absolute;
   top: 5%;
   right: 1%;
-
 }
 
 /* Signin Tempplate Bootstrap https://getbootstrap.com/docs/4.1/examples/sign-in/ */
@@ -114,13 +110,10 @@ body {
   border-top-right-radius: 0;
 }
 
-
 /* START */
 main h1 {
   font-size: 1.2em;
 }
-
-
 
 /* HOME */
 /*https://codepen.io/aneekul/post/columnar-independence*/
