@@ -32,7 +32,7 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <!-- Render startpage FLASK -->
-                    <a class="navbar-brand shadow-none" href="startpage.html">
+                    <a class="navbar-brand shadow-none" href="{{ url_for('startpage') }}">
                         <img src="../static/assets/images/logo_nav.png" class="rounded-circle" width="40" height="40"
                             class="d-inline-block align-top" alt="Logo">
                         <span class="ml-1">Book Road</span>
@@ -42,7 +42,7 @@
                 <ul class="nav navbar-right">
                     <!-- Render startpage FLASK -->
                     <li class="nav-item">
-                        <a class="nav-link shadow-none" href="startpage.html">Startpage</a>
+                        <a class="nav-link shadow-none" href="{{ url_for('startpage') }}">Startpage</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#exampleModalCenter" data-toggle="modal"

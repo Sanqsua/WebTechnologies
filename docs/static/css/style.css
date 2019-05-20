@@ -69,7 +69,7 @@ body {
 
 .del-edit-buttons {
   position: absolute;
-  top: 5%;
+  bottom: 5%;
   right: 1%;
 }
 

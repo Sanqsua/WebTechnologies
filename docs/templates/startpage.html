@@ -22,6 +22,7 @@
 
     <!-- stylesheet -->
     <link rel="stylesheet" href="../static/css/style.css">
+
 </head>
 
 <body>
@@ -41,9 +42,8 @@
                 <!-- Search adverts FLASK -->
                 <ul class="nav navbar-nav">
                     <form class="form-inline my-2 my-lg-0" method=post>
-                        <input class="form-control mr-sm-2 shadow-none" name="search" type="search" placeholder="Search"
-                            aria-label="Search">
-
+                        <input id="search-bar" class="mr-sm-2 shadow-none" name="search" type="search"
+                            placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0 shadow-none" type="submit">Search</button>
                     </form>
                 </ul>
@@ -75,9 +75,9 @@
                         <input type="password" id="inputPassword" name="inputPassword" class="form-control"
                             placeholder="Password" required>
 
-                        <a href="#" data-toggle="modal" data-target="#createAccount">Have no account? Register here!</a>
+                        <a href="#" data-toggle="modal" data-target="#createAccount">No account yet? Register here!</a>
 
-                        <button class="btn btn-lg btn-primary btn-block shadow-none" type="submit">Sign in</button>
+                        <button class="btn btn-lg btn-primary btn-block shadow-none my-2" type="submit">Sign in</button>
                     </form>
                 </div>
             </div>
@@ -89,23 +89,25 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content text-center">
                     <!-- Sign in FLASK -->
-                    <form class="form-signin">
+                    <form class="form-signin" action="{{ url_for('registration') }}" method="post">
                         <img class="mb-2" src="../static/assets/images/login_logo.png" alt="" width="150" height="150">
                         <h1 class="h3 mb-3 font-weight-normal">Create your Account</h1>
-                        <div class="form-group row">
-                            <label for="accountEmail" class="sr-only">Email address</label>
-                            <input type="email" id="accountEmail" name="accountEmail" class="form-control"
-                                placeholder="Email address" required autofocus>
-                        </div>
+
                         <div class="form-group row">
                             <label for="accountUsername" class="sr-only">Username</label>
                             <input type="username" id="accountUsername" name="accountUsername" class="form-control"
-                                placeholder="Username">
+                                placeholder="Username" required autofocus>
+                        </div>
+                        <div class="form-group row">
+                            <label for="accountEmail" class="sr-only">Email address</label>
+                            <input type="email" id="accountEmail" name="accountEmail" class="form-control"
+                                placeholder="Email address" required>
                         </div>
                         <div class="form-group row">
                             <input type="password" id="accountPassword" name="accountPassword" class="form-control"
                                 placeholder="Password" required>
                         </div>
+
                         <button class="btn btn-lg btn-primary btn-block shadow-none" type="submit">Create
                             Account</button>
                     </form>
@@ -119,9 +121,9 @@
             <!-- Adverts FLASK -->
             <div class="row">
                 {% for book in books %}
-                <div class="col-12 col-md-4 p-3">
+                <div class="col-12 col-md-4 p-3 book-box">
                     <div class="bg-light">
-                        <h1 class="ml-2">{{book.name}}</h1>
+                        <h1 class="ml-2 book-title">{{book.name}}</h1>
                         <img class="float-left" src="../static/assets/images/books.png" alt="placeholder-image"
                             width=100 height=100 />
                         <div class="overflow-hidden color-black p-0 box">
@@ -142,15 +144,16 @@
     </main>
 
     <!-- Footer-->
-    <footer class="page-footer font-small bottom">
+    <footer class="page-footer font-small bg-light">
         <div class="text-center py-3 color-black">
-            <a href="#!">Privacy Policy</a>
-            <a href="#!">Legal Notice</a>
-
-            © 2019 Copyright:
-            <a href="#">Book Road</a>
+            <a class="m-1" href="#">Privacy Policy</a>
+            |
+            <a class="m-1" href="#">Legal Notice</a>
+            © 2019
+            <a class="m-1" href="#">Book Road</a>
         </div>
     </footer>
+
 
     <!-- Bootstrap JavaScript -->
     <script src="../static/bootstrap/jquery-3.3.1.slim.min.js"></script>
@@ -164,6 +167,7 @@
             trigger: 'focus'
         })
     </script>
+    <script src="../static/js/search.js"> </script>
 </body>
 
 </html>
