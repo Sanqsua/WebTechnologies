@@ -1,7 +1,8 @@
-from app import app, db, ma
-from flask import request, jsonify, render_template
-from BookModel import Book, BookSchema
-from UserModel import User, UserSchema
+from app import app, db, ma, bcrypt
+from flask import request, jsonify, render_template,redirect, flash
+from models.BookModel import Book, BookSchema
+from models.UserModel import User, UserSchema
+# from forms import RegistrationForm, LoginForm
 
 # Bücher erstellen
 # Erstellen Book (Post)
@@ -24,11 +25,11 @@ def add_Book():
     db.session.commit()
     return book_schema.jsonify(new_Book)
 
-# getAllBooks (alle)
-@app.route('/', methods=['GET'])
-def get_Books():
-    all_Books = Book.query.all()
-    return render_template('startpage.html', books = all_Books)
+# Startseite mit allen Bücher werden angezeigt
+@app.route('/', methods=['GET','POST'])
+def get_Startpage():
+    all_books = Book.query.all()
+    return render_template('startpage.html', books = all_books)
 
 # getBook durch <id> (query parameter)
 @app.route('/book/<id>', methods=['GET'])
@@ -61,20 +62,26 @@ def delete_book(id):
 
     return book_schema.jsonify(book_to_delete)
 
-
 # Users
-#add
-@app.route('/user', methods=['POST'])
-def addUser():
-    name = request.json['name']
-    password = request.json['password']
-    email = request.json['email']
-
-    userToAdd = User(name, password, email)
-    db.session.add(userToAdd)
+#addUser/registrate
+@app.route('/registration', methods=['GET','POST'])
+def registrate():
+    # name = request.json['name']
+    # password = request.json['password']
+    # email = request.json['email']
+    # userToAdd = User(name, password, email)
+    # db.session.add(userToAdd)
+    # db.session.commit()
+    # return user_schema.jsonify(userToAdd)
+    hashed_password = bcrypt.generate_password_hash(request.form['accountPassword']).decode('utf-8')
+    accountUsername = request.form['accountUsername']
+    accountEmail = request.form['accountEmail']
+    user = User(name=accountUsername, email = accountEmail, password = hashed_password)
+    db.session.add(user)
     db.session.commit()
-    return user_schema.jsonify(userToAdd)
-
+    if(db.user.filter(db.user.name == user.name)):
+        flash("user eingefügt")
+    return render_template('home.html')
 #get userbyid
 @app.route('/user/<id>',methods=['GET'])
 def get_User_by_id(id):
