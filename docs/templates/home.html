@@ -32,7 +32,7 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <!-- Render startpage FLASK -->
-                    <a class="navbar-brand shadow-none" href="{{ url_for('startpage') }}">
+                    <a class="navbar-brand shadow-none" href="{{ url_for('renderStartpage') }}">
                         <img src="../static/assets/images/logo_nav.png" class="rounded-circle" width="40" height="40"
                             class="d-inline-block align-top" alt="Logo">
                         <span class="ml-1">Book Road</span>
@@ -42,7 +42,7 @@
                 <ul class="nav navbar-right">
                     <!-- Render startpage FLASK -->
                     <li class="nav-item">
-                        <a class="nav-link shadow-none" href="{{ url_for('startpage') }}">Startpage</a>
+                        <a class="nav-link shadow-none" href="{{ url_for('renderStartpage') }}">Startpage</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#exampleModalCenter" data-toggle="modal"
@@ -201,7 +201,7 @@
 
                 <!-- Form create adverts FLASK  -->
                 <div class="col-12 col-md-6 px-5 pt-3">
-                    <form>
+                    <form action="{{ url_for('createBook') }}" method="POST">
                         <div class="form-group row">
                             <label for="createTitle">Title</label>
                             <input class="form-control" id="createTitle" name="createTitle" type="text"
@@ -238,7 +238,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <!-- Edit FLASK -->
-                        <form class="p-4">
+                        <form class="p-4" action="{{ url_for('editBook') }}" method="POST">
                             <div class="form-group row">
                                 <label for="editTitle">Title</label>
                                 <input class="form-control" id="editTitle" name="editTitle" type="text"
