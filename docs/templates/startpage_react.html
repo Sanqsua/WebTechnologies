@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Book Road</title>
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../static/assets/favicons/site.webmanifest">
+    <link rel="mask-icon" href="../static/assets/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="../static/bootstrap/bootstrap.min.css">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="../static/css/style.css">
+
+<body>
+
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+
+    <!-- React JavaScript -->
+    <script src="../static/react/react.development.js"></script>
+    <script src="../static/react/react-dom.development.js"></script>
+    <script src="../static/react/babel.min.js"></script>
+    <script src="../static/react/startpage_components/header.js" type="text/babel"></script>
+    <script src="../static/react/startpage_components/main.js" type="text/babel"></script>
+    <script src="../static/react/startpage_components/login.js" type="text/babel"></script>
+    <script src="../static/react/startpage_components/footer.js" type="text/babel"></script>
+    <script src="../static/react/render_startpage.js" type="text/babel"></script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="../static/bootstrap/jquery-3.3.1.slim.min.js"></script>
+    <script src="../static/bootstrap/popper.min.js"></script>
+    <script src="../static/bootstrap/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+        $('.popover-dismiss').popover({
+            trigger: 'focus'
+        })
+    </script>
+    <script src="../static/js/search.js"></script>
+</body>
+
+</html>

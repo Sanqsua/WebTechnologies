@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -19,7 +20,8 @@
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="../static/bootstrap/bootstrap.min.css">
-
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- stylesheet -->
     <link rel="stylesheet" href="../static/css/style.css">
 
@@ -28,9 +30,10 @@
 <body>
 
     <header>
+
         <!-- Navbar -->
         <nav class="navbar navbar-default fixed-top">
-            <div class="container-fluid">
+            <div class="container-fluid">   
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
                         <img src="../static/assets/images/logo_nav.png" class="rounded-circle" width="40" height="40"
@@ -39,12 +42,17 @@
                     </a>
                 </div>
 
-                <!-- Search adverts FLASK -->
+                <!-- Search adverts -->
                 <ul class="nav navbar-nav">
-                    <form class="form-inline my-2 my-lg-0" method=post>
-                        <input id="search-bar" class="form-control mr-sm-2 shadow-none" name="search" type="search"
-                            placeholder="Search title" aria-label="Search">
-                        <!--<button class="btn btn-outline-success my-2 my-sm-0 shadow-none" type="submit">Search</button>-->
+                    <form class="form-inline my-2 my-lg-0">
+                        <div class="input-group md-form form-sm form-2 pl-0">
+                            <input id="search-bar" class="form-control my-0 py-1 shadow-none" type="text" name="search"
+                                placeholder="Search title .." aria-label="Search title">
+                            <div class="input-group-append">
+                                <span class="input-group-text red lighten-3" id="basic-text1"><i
+                                        class="fa fa-search text-grey" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
                     </form>
                 </ul>
 
@@ -55,6 +63,7 @@
                         Sign in
                     </button>
                 </ul>
+
             </div>
         </nav>
 
@@ -75,7 +84,8 @@
                         <input type="password" id="inputPassword" name="loginPassword" class="form-control"
                             placeholder="Password" required>
 
-                        <a href="#" data-toggle="modal" data-target="#createAccount">No account yet? Register here!</a>
+                        <a class="color-black" href="#" data-toggle="modal" data-target="#createAccount">No account yet?
+                            Register here!</a>
 
                         <button class="btn btn-lg btn-primary btn-block shadow-none my-2" type="submit">Sign in</button>
                     </form>
@@ -114,6 +124,7 @@
                 </div>
             </div>
         </div>
+
     </header>
 
     <!-- Flash if not email or username for registration is already taken -->
@@ -128,7 +139,9 @@
     {% endwith %}
     
     <main>
+
         <div class="container-fluid">
+
             <!-- Adverts FLASK -->
             <div class="row">
                 {% for book in books %}
@@ -139,7 +152,7 @@
                             width=100 height=100 />
                         <div class="overflow-hidden color-black p-0 box">
                             <p class="ml-2 my-1 font-italic">{{book.author}}</p>
-                            <p class="ml-2 my-1 font-weight-bold">Price: {{book.price}}</p>
+                            <p class="ml-2 my-1 font-weight-bold">Price: {{book.price}} €</p>
                             <p><a class="ml-2 my-1 color-black" tabindex="0" data-toggle="popover" data-trigger="focus"
                                     data-placement="bottom" title="Description"
                                     data-content="{{book.description}}">Description ▼</a></p>
@@ -151,7 +164,9 @@
                 </div>
                 {% endfor %}
             </div>
+
         </div>
+
     </main>
 
     <!-- Footer-->
@@ -178,7 +193,8 @@
             trigger: 'focus'
         })
     </script>
-    <script src="../static/js/search.js"> </script>
+    <!-- Vannilla JavaScript -->
+    <script src="../static/js/functions.js"></script>
 </body>
 
 </html>

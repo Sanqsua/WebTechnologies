@@ -73,6 +73,14 @@ body {
   right: 1%;
 }
 
+
+.book-box {
+  transition: all 1s linear;
+}
+.visuallyhidden {
+  opacity: 0;
+}
+
 /* Signin Tempplate Bootstrap https://getbootstrap.com/docs/4.1/examples/sign-in/ */
 
 .form-signin {

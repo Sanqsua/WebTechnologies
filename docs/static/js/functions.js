@@ -7,10 +7,25 @@ document.getElementById('search-bar').onkeyup = function () {
     for (let i = 0; i < bookTitle.length; i++) {
         if (!bookTitle[i].innerHTML.toLowerCase().includes(input)) {
             bookBox[i].style.display = "none";
-
         } else {
             bookBox[i].style.display = "block";
-
         }
     }
 }
+
+function hideDeletedElement() {
+    var bns = document.getElementsByClassName("delete-button");
+    for (i = 0; i < bns.length; i++) {
+        bns[i].addEventListener("click", function () {
+            box = this.closest('.book-box');
+            box.classList.add("visuallyhidden");
+            setTimeout(function () {
+                box.style.display = "none";
+            }, 1000)
+        });
+    }
+}
+
+window.addEventListener("load", function () {
+    hideDeletedElement();
+});
