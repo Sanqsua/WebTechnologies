@@ -19,5 +19,4 @@ class Book(db.Model):
 
 class BookSchema(ma.ModelSchema):
     class Meta:
-        # fields = ('id', 'name', 'author', 'description', 'price')
         model = Book

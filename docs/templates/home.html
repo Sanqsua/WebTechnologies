@@ -153,9 +153,9 @@
                     {% endfor %}
                 </div>
 
-                <!-- Form create adverts FLASK  -->
+                <!-- Form create book adverts FLASK action="{{ url_for('createBook') }}" method="POST"  -->
                 <div class="col-12 col-md-6 px-5 pt-3">
-                    <form action="{{ url_for('createBook') }}" method="POST">
+                    <form >
                         <div class="form-group row">
                             <label for="createTitle">Title</label>
                             <input class="form-control" id="createTitle" name="createTitle" type="text"
@@ -192,8 +192,8 @@
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <!-- Edit FLASK -->
-                        <form class="p-4" action="{{ url_for('editBook') }}" method="POST">
+                        <!-- Edit FLASK  action="{{ url_for('editBook') }}" method="POST"-->
+                        <form class="p-4"> 
                             <div class="form-group row">
                                 <label for="editTitle">Title</label>
                                 <input class="form-control" id="editTitle" name="editTitle" type="text"
