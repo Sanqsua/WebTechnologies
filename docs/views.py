@@ -1,5 +1,5 @@
 from app import app, db, ma, bcrypt
-from flask import request, jsonify, render_template, redirect, flash, url_for
+from flask import request, jsonify, render_template, redirect, flash, url_for, session
 from models.BookModel import Book, BookSchema
 from models.UserModel import User, UserSchema
 from flask_login import login_user
@@ -10,6 +10,59 @@ book_schema = BookSchema(strict=True)
 book_schemas = BookSchema(many=True, strict=True)
 user_schema = UserSchema(strict=True)
 user_schemas = UserSchema(many=True, strict=True)
+
+# Startseite mit allen Bücher werden angezeigt
+@app.route('/', methods=['GET'])
+@app.route('/startpage', methods=['GET'])
+def renderStartpage():
+
+    all_books = Book.query.all()
+    return render_template('startpage.html', books=all_books)
+# Render page
+@app.route('/home', methods=['GET'])
+def renderHomepage():
+    sessionEmail = session['email']
+    user = User.query.filter_by(email = sessionEmail)
+    if not session.get('email') == user:
+        return render_template('startpage.html')
+    else:
+        return render_template('home.html')
+
+# addUser/registrate
+@app.route('/registrate', methods=['GET', 'POST'])
+def registrate():
+    hashed_password = bcrypt.generate_password_hash(  # password encryption
+        request.form['accountPassword']).decode('utf-8')
+    accountUsername = request.form['accountUsername']
+    accountEmail = request.form['accountEmail']
+    user = User(name=accountUsername, email=accountEmail,  # generate user
+                password=hashed_password)
+
+    emailCheck = User.query.filter_by(email=accountEmail).first()
+    userNameCheck = User.query.filter_by(name=accountUsername).first()
+    if(emailCheck or userNameCheck):
+        flash('电脑说没有')
+        return redirect(url_for('renderStartpage'))
+
+    db.session.add(user)  # add user to db
+    db.session.commit()
+    return render_template('home.html')
+
+
+# TODO Login
+@app.route('/user/<email>', methods=['GET', 'POST'])
+def login():
+    inputEmail = request.form['loginEmail']
+    inputPassword = request.form['loginPassword']
+    user = User.query.filter_by(email=inputEmail).first()
+
+    if user and bcrypt.check_password_hash(user.password, inputPassword):
+        session['email'] = user.email
+        flash('You logged in nigga as ' + str(user.name))
+        return redirect(url_for('renderHomepage'))
+    else:
+        return render_template('startpage.html')
+
 
 # buch adden
 @app.route('/book', methods=['POST'])
@@ -25,15 +78,6 @@ def createBook():
     db.session.commit()
     return book_schema.jsonify(new_Book)
 
-# Startseite mit allen Bücher werden angezeigt
-@app.route('/', methods=['GET'])
-@app.route('/startpage', methods=['GET'])
-def renderStartpage():
-    all_books = Book.query.all()
-    return render_template('startpage.html', books=all_books)
-@app.route('/home',methods=['GET'])
-def renderHomepage():
-    return render_template('home.html')
 # getBook durch <id> (query parameter)
 @app.route('/book/<id>', methods=['GET'])
 def get_Book_by_id(id):
@@ -73,46 +117,13 @@ def delete_book(id):
     return book_schema.jsonify(book_to_delete)
 
 # Users
-# addUser/registrate
-#
-@app.route('/registrate', methods=['GET', 'POST'])
-def registrate():
-    hashed_password = bcrypt.generate_password_hash(  # password encryption
-        request.form['accountPassword']).decode('utf-8')
-    accountUsername = request.form['accountUsername']
-    accountEmail = request.form['accountEmail']
-    user = User(name=accountUsername, email=accountEmail,  # generate user
-                password=hashed_password)
-
-    emailCheck = User.query.filter_by(email=accountEmail).first()
-    userNameCheck = User.query.filter_by(name=accountUsername).first()
-    if(emailCheck and userNameCheck):
-        flash('he already in nigger')
-        return redirect(url_for('renderStartpage'))
-
-    db.session.add(user)  # add user to db
-    db.session.commit()
-    return render_template('home.html')
-
-# TODO
-@app.route('/home', methods=['GET', 'POST'])
-def login():
-    inputEmail = request.form['loginEmail']
-    inputPassword = request.form['loginPassword']
-    userEmail = User.query.filter_by(email=inputEmail).first()
-    if(userEmail and bcrypt.check_password_hash(userEmail), inputPassword):
-        flash('You logged in nigga as ' + str(userEmail))
-        login_user(userEmail, remember=True)
-        return redirect(url_for())
-    return render_template('startpage.html')
 
 
 @app.route('/startpage', methods=['GET'])
 def logout():
-    userEmail = User.query()
+    # session['logged_in'] = False
     flash('You logged out as ' + userEmail)
-    login_user(userEmail, remember=False)
-    return render_template('home.html')
+    return render_template('startpage.html')
 
 # get userbyid
 @app.route('/user/<id>', methods=['GET'])

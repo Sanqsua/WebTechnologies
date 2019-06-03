@@ -28,7 +28,15 @@
 </head>
 
 <body>
-
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
     <header>
         <!-- Navbar -->
         <nav class="navbar navbar-default fixed-top">
@@ -52,9 +60,11 @@
                             data-target="#exampleModalCenter">Account</a>
                     </li>
                     <!-- Sign out FLASK -->
-                    <button type="button" class="btn btn-primary ml-4 shadow-none" data-toggle="modal">
-                        Sign out
-                    </button>
+                    <a href="{{ url_for('logout') }}">
+                        <button type="button" class="btn btn-primary ml-4 shadow-none" data-toggle="modal">
+                            Sign out
+                        </button>
+                    </a>
                 </ul>
             </div>
         </nav>
@@ -83,15 +93,6 @@
                 </div>
             </div>
         </div>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul class=flashes>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
         <!-- Delete account modal -->
         <div class="modal fade" id="deleteAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true">
