@@ -1,17 +1,16 @@
 class Login extends React.Component {
   render(){
+
     return(             
     <div>
-        {/* Sign in modal */}
         <div className="modal fade" id="exampleModalCenter" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered" role="document">
-            <div className="modal-content text-center">
-              {/* Sign in FLASK */}
-              <form className="form-signin"  method="GET">
-                <img className="mb-2" src="../static/assets/images/login_logo.png" alt width={150} height={150} />
+            <div className="modal-content text-center">              
+              <form className="form-signin" method="GET">
+                <img className="mb-2" src="../static/assets/images/login_logo.png" alt="Logo" width={150} height={150} />
                 <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
                 <label htmlFor="inputEmail" className="sr-only">Email address</label>
-                <input type="email" id="inputEmail" name="loginEmail" className="form-control" placeholder="Email address" required autofocus />
+                <input type="email" id="inputEmail" name="loginEmail" className="form-control" placeholder="Email address" required autoFocus/>
                 <label htmlFor="inputPassword" className="sr-only">Password</label>
                 <input type="password" id="inputPassword" name="loginPassword" className="form-control" placeholder="Password" required />
                 <a href="#" data-toggle="modal" data-target="#createAccount">No account yet? Register here!</a>
@@ -20,17 +19,16 @@ class Login extends React.Component {
             </div>
           </div>
         </div>
-        {/* Create Account modal */}
+
         <div className="modal fade" id="createAccount" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content text-center">
-              {/* Sign in FLASK */}
-              <form className="form-signin"  method="post">
-                <img className="mb-2" src="../static/assets/images/login_logo.png" alt width={150} height={150} />
+              <form className="form-signin" action="/registrate" method="post">
+                <img className="mb-2" src="../static/assets/images/login_logo.png" alt="Logo" width={150} height={150} />
                 <h1 className="h3 mb-3 font-weight-normal">Create your Account</h1>
                 <div className="form-group row">
                   <label htmlFor="accountUsername" className="sr-only">Username</label>
-                  <input type="username" id="accountUsername" name="accountUsername" className="form-control" placeholder="Username" required autofocus />
+                  <input type="username" id="accountUsername" name="accountUsername" className="form-control" placeholder="Username" required autoFocus/>
                 </div>
                 <div className="form-group row">
                   <label htmlFor="accountEmail" className="sr-only">Email address</label>

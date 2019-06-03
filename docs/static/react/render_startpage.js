@@ -2,7 +2,6 @@ class Startpage extends React.Component {
   render(){
     return(
       <div>
-        <Header />
         <Login />
         <Main />
         <Footer />
