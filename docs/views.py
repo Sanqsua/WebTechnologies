@@ -2,6 +2,7 @@ from app import app, db, ma, bcrypt
 from flask import request, jsonify, render_template, redirect, flash, url_for
 from models.BookModel import Book, BookSchema
 from models.UserModel import User, UserSchema
+from flask_login import login_user
 
 # Bücher erstellen
 # Erstellen Book (Post)
@@ -26,10 +27,13 @@ def createBook():
 
 # Startseite mit allen Bücher werden angezeigt
 @app.route('/', methods=['GET'])
+@app.route('/startpage', methods=['GET'])
 def renderStartpage():
     all_books = Book.query.all()
     return render_template('startpage.html', books=all_books)
-
+@app.route('/home',methods=['GET'])
+def renderHomepage():
+    return render_template('home.html')
 # getBook durch <id> (query parameter)
 @app.route('/book/<id>', methods=['GET'])
 def get_Book_by_id(id):
@@ -70,8 +74,8 @@ def delete_book(id):
 
 # Users
 # addUser/registrate
-# 
-@app.route('/', methods=['GET', 'POST'])
+#
+@app.route('/registrate', methods=['GET', 'POST'])
 def registrate():
     hashed_password = bcrypt.generate_password_hash(  # password encryption
         request.form['accountPassword']).decode('utf-8')
@@ -90,15 +94,24 @@ def registrate():
     db.session.commit()
     return render_template('home.html')
 
-
-@app.route('/login', methods=['GET'])
+# TODO
+@app.route('/home', methods=['GET', 'POST'])
 def login():
     inputEmail = request.form['loginEmail']
     inputPassword = request.form['loginPassword']
-    user = User.query.filter_by(email=inputEmail).first()
-    if(user and bcrypt.check_password_hash(user), inputPassword):
-        return redirect(url_for('startpage'))
-    flash('Login no gut')
+    userEmail = User.query.filter_by(email=inputEmail).first()
+    if(userEmail and bcrypt.check_password_hash(userEmail), inputPassword):
+        flash('You logged in nigga as ' + str(userEmail))
+        login_user(userEmail, remember=True)
+        return redirect(url_for())
+    return render_template('startpage.html')
+
+
+@app.route('/startpage', methods=['GET'])
+def logout():
+    userEmail = User.query()
+    flash('You logged out as ' + userEmail)
+    login_user(userEmail, remember=False)
     return render_template('home.html')
 
 # get userbyid
