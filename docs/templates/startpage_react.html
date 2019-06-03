@@ -30,7 +30,22 @@
     <div id="root"></div>
 
 
+
     <!-- React JavaScript -->
+    <script type="text/javascript">
+        window.arrayBooksPrice = [];
+        window.arrayBooksName = [];
+        window.arrayBooksAuthor = [];
+        window.arrayBooksEmail = [];
+        window.arrayBooksDescription = [];
+        '{% for book in books %}'
+        arrayBooksName.push('{{book.name}}');
+        arrayBooksAuthor.push('{{book.author}}');
+        arrayBooksPrice.push('{{book.price}}');
+        arrayBooksDescription.push('{{book.description}}');
+        arrayBooksEmail.push('{{book.user.email}}');
+        '{% endfor %}'
+    </script>
     <script src="../static/react/react.development.js"></script>
     <script src="../static/react/react-dom.development.js"></script>
     <script src="../static/react/babel.min.js"></script>
