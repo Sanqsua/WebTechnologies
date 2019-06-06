@@ -1,3 +1,5 @@
+/* STARTPAGE Footer */
+
 class Footer extends React.Component {
   render(){
     return(
