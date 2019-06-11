@@ -18,7 +18,7 @@ def renderStartpage():
     # if current_user.is_authenticated:
     #     return redirect(url_for('renderHomepage'))
     all_books = Book.query.all()
-    return render_template('startpage.html', books=all_books)
+    return render_template('startpage_react.html', books=all_books)
 
 # Render pageHomepage
 @login_required  # decorator need to log in
@@ -27,7 +27,7 @@ def renderHomepage():
     if current_user.is_authenticated:
         userBooks = Book.query.join(
             User, Book.user_id == current_user.id).all()
-    return render_template('home.html', books=userBooks)
+    return render_template('home_react.html', books=userBooks)
 
 # addUser/registrate
 @app.route('/registrate', methods=['GET', 'POST'])
@@ -52,7 +52,7 @@ def registrate():
     return redirect(url_for('renderStartpage'))
 
 # LOGIN
-@app.route('/user/', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
 
     inputEmail = request.form['loginEmail']
@@ -74,7 +74,7 @@ def logout():
     return redirect(url_for('renderStartpage'))
 
 # buch adden
-@app.route('/book', methods=['POST'])
+@app.route('/createBook', methods=['POST'])
 def createBook():
     name = request.form['createTitle']
     author = request.form['createAuthor']

@@ -30,7 +30,7 @@ class Main extends React.Component {
                            data-content={books.description}>Description ▼</a></p>
                </div>
                <div className="del-edit-buttons">
-                    <a href="#" onClick={handleClick(books.id)}>
+                    <a href="#">
                         <button className="btn btn-primary shadow-none delete-button" type="button" >Delete</button>
                     </a>
                    <a href="">
@@ -46,8 +46,6 @@ class Main extends React.Component {
     onchange = e => {
         this.setState({ search: e.target.value });
     };
-
-    
     
 
     render() {
@@ -90,7 +88,7 @@ class Main extends React.Component {
 
                     {/* Form create book adverts FLASK  */}
                     <div className="col-12 col-md-6 px-5 pt-3">
-                        <form>
+                        <form action="/createBook" method="post">
                             <div className="form-group row">
                                 <label htmlFor="createTitle">Title</label>
                                 <input className="form-control" id="createTitle" name="createTitle" type="text"
