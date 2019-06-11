@@ -2,7 +2,7 @@ from app import app, db, ma, bcrypt
 from flask import request, jsonify, render_template, redirect, flash, url_for, session
 from models.BookModel import Book, BookSchema
 from models.UserModel import User, UserSchema
-from flask_login import login_user
+from flask_login import login_user, current_user, logout_user, login_required
 
 # Bücher erstellen
 # Erstellen Book (Post)
@@ -15,22 +15,20 @@ user_schemas = UserSchema(many=True, strict=True)
 @app.route('/', methods=['GET'])
 @app.route('/startpage', methods=['GET'])
 def renderStartpage():
-
+    # if current_user.is_authenticated:
+    #     return redirect(url_for('renderHomepage'))
     all_books = Book.query.all()
     return render_template('startpage.html', books=all_books)
 # Render page
 @app.route('/home', methods=['GET'])
 def renderHomepage():
-    sessionEmail = session['email']
-    user = User.query.filter_by(email = sessionEmail)
-    if not session.get('email') == user:
-        return render_template('startpage.html')
-    else:
-        return render_template('home.html')
+    
+    return render_template('home.html')
 
 # addUser/registrate
 @app.route('/registrate', methods=['GET', 'POST'])
 def registrate():
+
     hashed_password = bcrypt.generate_password_hash(  # password encryption
         request.form['accountPassword']).decode('utf-8')
     accountUsername = request.form['accountUsername']
@@ -44,25 +42,34 @@ def registrate():
         flash('电脑说没有')
         return redirect(url_for('renderStartpage'))
 
+    flash('You in nigger')
     db.session.add(user)  # add user to db
     db.session.commit()
-    return render_template('home.html')
+    return redirect(url_for('renderStartpage'))
 
 
 # TODO Login
-@app.route('/user/<email>', methods=['GET', 'POST'])
+@app.route('/user/', methods=['GET', 'POST'])
+@login_required
 def login():
+
     inputEmail = request.form['loginEmail']
     inputPassword = request.form['loginPassword']
     user = User.query.filter_by(email=inputEmail).first()
 
     if user and bcrypt.check_password_hash(user.password, inputPassword):
-        session['email'] = user.email
+        login_user(user, remember=True)
         flash('You logged in nigga as ' + str(user.name))
         return redirect(url_for('renderHomepage'))
     else:
         return render_template('startpage.html')
 
+
+@app.route('/logout', methods=['GET'])
+def logout():
+    logout_user()
+    flash('You logged out mate ')
+    return redirect(url_for('renderStartpage'))
 
 # buch adden
 @app.route('/book', methods=['POST'])
@@ -119,12 +126,6 @@ def delete_book(id):
 # Users
 
 
-@app.route('/startpage', methods=['GET'])
-def logout():
-    # session['logged_in'] = False
-    flash('You logged out as ' + userEmail)
-    return render_template('startpage.html')
-
 # get userbyid
 @app.route('/user/<id>', methods=['GET'])
 def get_User_by_id(id):
@@ -159,3 +160,11 @@ def update_user(id):
     user_to_update.email = email
     db.session.commit()
     return user_schema.jsonify(user_to_update)
+
+@app.route('/users', methods=['GET'])
+def getallusers():
+    
+    users = User.query.all()
+    result = user_schemas.dump(users)
+
+    return book_schemas.jsonify(result.data)
