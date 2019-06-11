@@ -1,3 +1,5 @@
+/* STARTPAGE Login */
+
 class Login extends React.Component {
   render(){
 
@@ -7,7 +9,7 @@ class Login extends React.Component {
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content text-center">              
               <form className="form-signin" method="GET">
-                <img className="mb-2" src="../static/assets/images/login_logo.png" alt="Logo" width={150} height={150} />
+                <img className="mb-2" src="../static/assets/images/login_logo.png" alt="Logo" width="150" height="150" />
                 <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
                 <label htmlFor="inputEmail" className="sr-only">Email address</label>
                 <input type="email" id="inputEmail" name="loginEmail" className="form-control" placeholder="Email address" required autoFocus/>

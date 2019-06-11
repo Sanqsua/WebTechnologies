@@ -1,3 +1,5 @@
+/* STARTPAGE Main */
+
 class Main extends React.Component {
 
     state = {
@@ -10,8 +12,8 @@ class Main extends React.Component {
         <div className="col-12 col-md-4 p-3 book-box" key={books.id}>
             <div className="bg-light">
                 <h1 className="ml-2 book-title">{books.name}</h1>
-                <img className="float-left" src="../static/assets/images/books.png" alt="Book" width={100}
-                    height={100} />
+                <img className="float-left" src="../static/assets/images/books.png" alt="Book" width="100"
+                    height="100" />
                 <div className="overflow-hidden color-black p-0 box">
                     <p className="ml-2 my-1 font-italic">{books.author}</p>
                     <p className="ml-2 my-1 font-weight-bold">Price: {books.price} €</p>
@@ -45,7 +47,7 @@ class Main extends React.Component {
                   <div className="navbar-header">
                       <a className="navbar-brand" href="#">
                           <img src="../static/assets/images/logo_nav.png" className="rounded-circle" alt="Logo"
-                              width={40} height={40} />
+                              width="40" height="40" />
                           <span className="ml-1">Book Road</span>
                       </a>
                   </div>

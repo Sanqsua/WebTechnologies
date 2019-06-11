@@ -3,8 +3,9 @@ class Home extends React.Component {
     return(
       <div>
         <Header />
+        <Account />
         <Main />
-        <Footer />
+
       </div>
     )
   }
