@@ -16,7 +16,7 @@ ma = Marshmallow(app)
 bcrypt = Bcrypt(app)
 
 login_manager = LoginManager(app) #durch verändern der Models, werden die sessions gemanaged
-login_manager.login_view = 'login'
+login_manager.login_view = 'login' # function for login_required
 from views import *
 if __name__ == "__main__":
     app.run()

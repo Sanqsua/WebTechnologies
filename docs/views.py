@@ -19,11 +19,15 @@ def renderStartpage():
     #     return redirect(url_for('renderHomepage'))
     all_books = Book.query.all()
     return render_template('startpage.html', books=all_books)
-# Render page
+
+# Render pageHomepage
+@login_required  # decorator need to log in
 @app.route('/home', methods=['GET'])
 def renderHomepage():
-    
-    return render_template('home.html')
+    if current_user.is_authenticated:
+        userBooks = Book.query.join(
+            User, Book.user_id == current_user.id).all()
+    return render_template('home.html', books=userBooks)
 
 # addUser/registrate
 @app.route('/registrate', methods=['GET', 'POST'])
@@ -47,10 +51,8 @@ def registrate():
     db.session.commit()
     return redirect(url_for('renderStartpage'))
 
-
-# TODO Login
+# LOGIN
 @app.route('/user/', methods=['GET', 'POST'])
-@login_required
 def login():
 
     inputEmail = request.form['loginEmail']
@@ -74,17 +76,18 @@ def logout():
 # buch adden
 @app.route('/book', methods=['POST'])
 def createBook():
-    name = request.json['name']
-    author = request.json['author']
-    description = request.json['description']
-    price = request.json['price']
-    user_id = request.json['user_id']
-
+    name = request.form['createTitle']
+    author = request.form['createAuthor']
+    description = request.form['createDescription']
+    price = request.form['createPrice']
+    user_id = current_user.id
     new_Book = Book(name, author, description, price, user_id)
     db.session.add(new_Book)
     db.session.commit()
-    return book_schema.jsonify(new_Book)
-
+    flash('book added')
+    # book_schema.jsonify(new_Book)
+    return redirect(url_for('renderHomepage'))
+  
 # getBook durch <id> (query parameter)
 @app.route('/book/<id>', methods=['GET'])
 def get_Book_by_id(id):
@@ -161,9 +164,10 @@ def update_user(id):
     db.session.commit()
     return user_schema.jsonify(user_to_update)
 
+
 @app.route('/users', methods=['GET'])
 def getallusers():
-    
+
     users = User.query.all()
     result = user_schemas.dump(users)
 

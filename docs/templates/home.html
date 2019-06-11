@@ -162,9 +162,9 @@
                     {% endfor %}
                 </div>
 
-                <!-- Form create book adverts FLASK action="{{ url_for('createBook') }}" method="POST"  -->
+                <!-- Form create book adverts FLASK   -->
                 <div class="col-12 col-md-6 px-5 pt-3">
-                    <form>
+                    <form action="{{ url_for('createBook') }}" method="POST">
                         <div class="form-group row">
                             <label for="createTitle">Title</label>
                             <input class="form-control" id="createTitle" name="createTitle" type="text"
