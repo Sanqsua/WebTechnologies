@@ -58,8 +58,13 @@
 
                 <!-- Sign in/out -->
 
-                <ul class="nav navbar-nav navbar-right">
+
+
+                <ul class="nav navbar-right">
                     {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link shadow-none" href="/home">Home</a>
+                    </li>
                     <a href="{{ url_for('logout') }}">
                         <button type="button" class="btn btn-primary ml-4 shadow-none" data-toggle="modal">
                             Sign out
