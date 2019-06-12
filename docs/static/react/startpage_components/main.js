@@ -15,13 +15,13 @@ class Main extends React.Component {
                 <img className="float-left" src="../static/assets/images/books.png" alt="Book" width="100"
                     height="100" />
                 <div className="overflow-hidden color-black p-0 box">
-                    <p className="ml-2 my-1 font-italic">{books.author}</p>
+                    <p className="ml-2 my-1 font-italic">Author: {books.author}</p>
                     <p className="ml-2 my-1 font-weight-bold">Price: {books.price} €</p>
                     <p><a className="ml-2 my-1 color-black" tabIndex="0" data-toggle="popover" data-trigger="focus"
-                            data-placement="bottom" title="Description" data-content={books.description}>Description ▼</a>
+                            data-placement="bottom" title="Description" data-content={books.description}>Show description ▷</a>
                     </p>
                     <div className="email">
-                        <a className="h1" href={'mailto:' + books.email + '?subject=Your Advert:' + books.name}>✉</a>
+                         <a className="h1" href={'mailto:' + books.email + '?subject=Your Advert:' + books.name}>✉</a>
                     </div>
                 </div>
             </div>
@@ -39,6 +39,30 @@ class Main extends React.Component {
         return books.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     });
    
+
+    var loginButton;
+    if (login) {
+        loginButton=
+        <ul className="nav navbar-right"> 
+             <li className="nav-item">
+                <a className="nav-link shadow-none" href="/home">Home</a>
+             </li>  
+             <a href="/logout">
+                    <button type="button" className="btn btn-primary ml-4 shadow-none" data-toggle="modal">
+                     Sign out
+                    </button>
+             </a>
+        </ul>
+    } else { 
+        loginButton = 
+        <ul className="nav navbar-right"> 
+            <button type="button" className="btn btn-primary shadow-none" data-toggle="modal"
+            data-target="#exampleModalCenter">
+            Sign in
+            </button>
+        </ul>
+    }
+
     return (
     <div>
       <header>
@@ -63,12 +87,9 @@ class Main extends React.Component {
                           </div>
                       </form>
                   </ul>
-                  <ul className="nav navbar-nav navbar-right">
-                      <button type="button" className="btn btn-primary shadow-none" data-toggle="modal"
-                          data-target="#exampleModalCenter">
-                          Sign in
-                      </button>
-                  </ul>
+                 
+                  {loginButton} 
+
               </div>
           </nav>
       </header>

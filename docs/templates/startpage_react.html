@@ -43,19 +43,29 @@
 
     <!-- React JavaScript -->
     <script type="text/javascript">
-        var Obj = function (name, author, price, description, email) {
+        var Obj = function (name, author, price, description, email, username) {
             this.name = name;
             this.author = author;
             this.price = price;
             this.description = description;
             this.email = email;
+            this.username = username;
         }
+        var login = false;
 
         window.booksArray = [];
         '{% for book in books %}'
         window.booksArray.push(new Obj('{{book.name}}', '{{book.author}}', '{{book.price}}', '{{book.description}}',
-            '{{book.user.email}}'));
+            '{{book.user.email}}', '{{book.user.name}}'));
         '{% endfor %}'
+
+        '{% if current_user.is_authenticated %}'
+        login = true;
+        '{% else %}'
+        login = false;
+        '{% endif %}'
+
+        console.log(login)
     </script>
 
     <script src="../static/react/react.development.js"></script>

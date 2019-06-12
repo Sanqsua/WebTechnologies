@@ -15,7 +15,7 @@ class Login extends React.Component {
                 <input type="email" id="inputEmail" name="loginEmail" className="form-control" placeholder="Email address" required autoFocus/>
                 <label htmlFor="inputPassword" className="sr-only">Password</label>
                 <input type="password" id="inputPassword" name="loginPassword" className="form-control" placeholder="Password" required />
-                <a href="#" data-toggle="modal" data-target="#createAccount">No account yet? Register here!</a>
+                <a className="color-black" href="#" data-toggle="modal" data-target="#createAccount">No account yet? Register here!</a>
                 <button className="btn btn-lg btn-primary btn-block shadow-none my-2" type="submit">Sign in</button>
               </form>
             </div>
