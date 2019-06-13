@@ -15,6 +15,7 @@ class Book(db.Model):
         self.author = author
         self.description = description
         self.price = price
+        self.image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
         self.user_id = user_id
 
 class BookSchema(ma.ModelSchema):
