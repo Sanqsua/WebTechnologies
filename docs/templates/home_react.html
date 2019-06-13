@@ -54,7 +54,12 @@
             this.description = description;
             this.email = email;
             this.username = username;
+            
         }
+
+    
+        window.name = '{{user.name}}';
+        window.email= '{{user.email}}'
 
         window.booksArray = [];
         '{% for book in books %}'

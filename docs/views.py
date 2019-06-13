@@ -25,9 +25,10 @@ def renderStartpage():
 @app.route('/home', methods=['GET'])
 def renderHomepage():
     if current_user.is_authenticated:
+        user = current_user
         userBooks = Book.query.join(
             User, Book.user_id == current_user.id).all()
-    return render_template('home_react.html', books=userBooks)
+    return render_template('home_react.html', books=userBooks, user=user)
 
 # addUser/registrate
 @app.route('/registrate', methods=['GET', 'POST'])
@@ -74,7 +75,9 @@ def logout():
     flash('Sign out was successful.')
     return redirect(url_for('renderStartpage'))
 
-# buch adden
+
+# Buchoptionen
+# create and add book
 @app.route('/createBook', methods=['POST'])
 def createBook():
     name = request.form['createTitle']
@@ -83,19 +86,20 @@ def createBook():
     price = request.form['createPrice']
     user_id = current_user.id
     new_Book = Book(name, author, description, price, user_id)
+
     db.session.add(new_Book)
     db.session.commit()
     flash('book added')
     # book_schema.jsonify(new_Book)
     return redirect(url_for('renderHomepage'))
-  
-# getBook durch <id> (query parameter)
-@app.route('/book/<id>', methods=['GET'])
-def get_Book_by_id(id):
-    book = Book.query.get(id)
-    return book_schema.jsonify(book)
 
-# update(put request) an sich genau so wie add, nur anders
+# getBook durch <id> (query parameter)
+# @app.route('/book/<id>', methods=['GET'])
+# def get_Book_by_id(id):
+#     book = Book.query.get(id)
+#     return book_schema.jsonify(book)
+
+# update(put) book (an sich genau so wie add, nur anders)
 @app.route('/book/<id>', methods=['PUT'])
 def editBook(id):
     updated_book = Book.query.get(id)
@@ -118,8 +122,8 @@ def getAllBooks():
     result = book_schemas.dump(allbooks)
     return jsonify(result.data)
 
-
-@app.route('/book/<id>', methods=['DELETE'])
+#delete
+@app.route('/deleteBook/<id>', methods=['DELETE'])
 def delete_book(id):
     book_to_delete = Book.query.get(id)
     db.session.delete(book_to_delete)
