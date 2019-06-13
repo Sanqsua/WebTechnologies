@@ -33,11 +33,43 @@ class Main extends React.Component {
                    <form className="float-left" action={ '/deleteBook/' + books.id } method="post">
                         <button className="btn btn-primary shadow-none delete-button" type="submit">Delete</button>
                    </form>
-                   <a href="">
-                   <button data-toggle="modal" data-target="#editModal"
-                       className="btn btn-primary shadow-none">Edit</button>
-                   </a>
+                   
+                   <button data-toggle="modal" data-target={ '#editModal' + books.id } className="btn btn-primary shadow-none">Edit</button>
+                   
                </div>
+
+                {/* Edit modal */}
+            <div className="modal fade" id={ 'editModal' + books.id }  tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                <div className="modal-content">
+                    {/* Edit FLASK */}
+                    <form className="p-4" action={ '/editBook/' + books.id } method="POST">
+                    <div className="form-group row">
+                        <label htmlFor="editTitle">Title</label>
+                        <input className="form-control" id="editTitle" name="editTitle" type="text" placeholder="Title"  required />
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="editAuthor">Author</label>
+                        <input className="form-control" id="editAuthor" name="editAuthor" type="text" placeholder="Author" required />
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="editDescription">Description</label>
+                        <textarea className="form-control" id="editDescription" name="editDescription" rows={3}  />
+                    </div>
+                    <div className="form-group row">
+                        <div className="col-xs-2 p-0">
+                        <label htmlFor="editPrice">Price in €</label>
+                        <input className="form-control" id="editPrice" name="editPrice" type="number" min={0} placeholder="Price"  required />
+                        </div>
+                    </div>
+                    <div className="text-center">
+                        <button className="btn btn-primary shadow-none" type="reset">Reset</button>
+                        <button className="btn btn-primary shadow-none" type="submit">Submit</button>
+                    </div>
+                    </form>
+                </div>
+                </div>
+            </div>
            </div>
    </div>
       );
@@ -115,41 +147,7 @@ class Main extends React.Component {
                     </div>
                 </form>
                 </div>
-            </div>
-
-
-            {/* Edit modal */}
-            <div className="modal fade" id="editModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered" role="document">
-                <div className="modal-content">
-                    {/* Edit FLASK */}
-                    <form className="p-4">
-                    <div className="form-group row">
-                        <label htmlFor="editTitle">Title</label>
-                        <input className="form-control" id="editTitle" name="editTitle" type="text" placeholder="Title" required />
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="editAuthor">Author</label>
-                        <input className="form-control" id="editAuthor" name="editAuthor" type="text" placeholder="Author" required />
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="editDescription">Description</label>
-                        <textarea className="form-control" id="editDescription" name="editDescription" rows={3} />
-                    </div>
-                    <div className="form-group row">
-                        <div className="col-xs-2 p-0">
-                        <label htmlFor="editPrice">Price in €</label>
-                        <input className="form-control" id="editPrice" name="editPrice" type="number" min={0} placeholder="Price" required />
-                        </div>
-                    </div>
-                    <div className="text-center">
-                        <button className="btn btn-primary shadow-none" type="reset">Reset</button>
-                        <button className="btn btn-primary shadow-none" type="submit">Submit</button>
-                    </div>
-                    </form>
-                </div>
-                </div>
-            </div>
+            </div>           
           </div>
         </main>
         </div>
