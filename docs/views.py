@@ -147,7 +147,7 @@ def get_Users():
     result = user_schemas.dump(all_Users)
     return jsonify(result.data)
 
-# delete
+# delete user by ID
 @app.route('/user/<id>', methods=['DELETE'])
 def deleteUser(id):
     userToDelete = User.query.get(id)
