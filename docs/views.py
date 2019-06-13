@@ -156,24 +156,28 @@ def get_Users():
     return jsonify(result.data)
 
 # delete user by ID
-@app.route('/deleteUser/<id>', methods=['POST'])
+@app.route('/deleteUser/')
 @login_required
-def deleteUser(id):
-    userToDelete = User.query.get_or_404(id)
+def deleteUser():
+    userToDelete = User.query.get_or_404(current_user.id)
     logout_user()
+    flash('Account ' +str(userToDelete)+ ' deleted')
     db.session.delete(userToDelete)
     db.session.commit()
     return redirect(url_for('renderStartpage'))
 
 
-@app.route('/editUser/<id>', methods=['POST'])
+@app.route('/editUser', methods=['POST'])
 @login_required
-def update_user(id):
-    user_to_update = User.query.get_or_404(id)
+def editUser():
+    user_to_update = User.query.get_or_404(current_user.id)
+    if(user_to_update.id != current_user.id):
+        abort(403)
     email = request.form['editEmail']
-    password = request.form['editPassword']
-    user_to_update.password = password
+    password = bcrypt.generate_password_hash(request.form['editPassword']).decode('utf-8')
+    
     user_to_update.email = email
+    user_to_update.password = password
     db.session.commit()
     flash('user updated')
     return redirect(url_for('renderHomepage'))
