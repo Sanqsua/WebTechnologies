@@ -8,8 +8,9 @@ class Main extends React.Component {
       
     renderBooks= books => {
         const { search } = this.state;
+
     return (
-        
+        /* Display books */
         <div className="col-12 col-md-4 p-3 book-box" key={books.id}>
             <div className="bg-light">
                 <h1 className="ml-2 book-title">{books.name}</h1>
@@ -18,7 +19,7 @@ class Main extends React.Component {
                 <div className="overflow-hidden color-black p-0 box">
                     <p className="ml-2 my-1 font-italic">Author: {books.author}</p>
                     <p className="ml-2 my-1 font-weight-bold">Price: {books.price} €</p>
-                    <p><a className="ml-2 my-1 color-black" href="#" data-toggle="modal" data-target={ '#showMore' + books.id } >Description ▷</a>
+                    <p><a className="ml-2 my-1 color-black" href="#" data-toggle="modal" data-target={ '#showMore' + books.id } >Show more ▷</a>
                     </p>
                     <div className="email">
                          <a className="h1" href={'mailto:' + books.email + '?subject=Your Advert:' + books.name}>✉</a>
@@ -26,6 +27,7 @@ class Main extends React.Component {
                 </div>
             </div>
 
+        {/* Show more Modal*/}
         <div className="modal fade" id={ 'showMore' + books.id } tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div className="modal-dialog" role="document">
         <div className="modal-content text-center">              
@@ -50,16 +52,20 @@ class Main extends React.Component {
       );
     };
 
+    /* Searchbar input change */
     onchange = e => {
         this.setState({ search: e.target.value });
     };
 
+    /* Render Filteredbooks */
     render() {
         const { search } = this.state;
         const filteredBooks = booksArray.filter(books => {
         return books.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     });
    
+
+    /* Display Sign in or Sign out Button*/
     var loginButton;
     if (login) {
         loginButton=
@@ -67,7 +73,7 @@ class Main extends React.Component {
              <li className="nav-item">
                 <a className="nav-link shadow-none" href="/home">Home</a>
              </li>  
-             <a href="/logout">
+             <a href="/logout">  {/* Logut FLASK*/}
                     <button type="button" className="btn btn-primary ml-4 shadow-none">
                      Sign out
                     </button>
@@ -77,7 +83,7 @@ class Main extends React.Component {
         loginButton = 
         <ul className="nav navbar-right"> 
             <button type="button" className="btn btn-primary shadow-none" data-toggle="modal"
-            data-target="#exampleModalCenter">
+            data-target="#loginModal">
             Sign in
             </button>
         </ul>
@@ -85,6 +91,7 @@ class Main extends React.Component {
 
     return (
     <div>
+      {/* Navbar */}
       <header>
           <nav className="navbar navbar-default fixed-top">
               <div className="container-fluid">
@@ -99,7 +106,7 @@ class Main extends React.Component {
                       <form className="form-inline my-2 my-lg-0">
                           <div className="input-group md-form form-sm form-2 pl-0">
                               <input id="search-bar" className="form-control my-0 py-1 shadow-none" type="text"
-                                  name="search" placeholder="Search title .." aria-label="Search title" onChange={this.onchange}/>
+                                  name="search" placeholder="Search title .." aria-label="Search title" onChange={this.onchange}/> {/* Searchbar */}
                               <div className="input-group-append">
                                   <span className="input-group-text red lighten-3" id="basic-text1"><i
                                           className="fa fa-search text-grey" aria-hidden="true"/></span>
@@ -108,13 +115,15 @@ class Main extends React.Component {
                       </form>
                   </ul>
                  
+                  {/* Sign in or Sign out Button */}
                   {loginButton} 
 
               </div>
           </nav>
       </header>
-
+     
       <main>
+       {/* Books */}
       <div className="container-fluid">
           <div className="row">
               {filteredBooks.map(books => {

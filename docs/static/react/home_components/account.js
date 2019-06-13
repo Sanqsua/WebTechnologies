@@ -9,7 +9,7 @@ class Account extends React.Component {
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content text-center">
-                        <form className="form-signin">
+                        <form className="form-signin"> {/* Account edit FLASK */}
                         <h1 className="h3 mb-3 font-weight-normal">Your Account</h1>
                         <p className="text-left">Username: {name}  </p>
                         <p className="text-left">Email address: {email} </p>
@@ -20,7 +20,6 @@ class Account extends React.Component {
                         <label htmlFor="inputPassword" className="sr-only">Password</label>
                         <input type="password" id="inputPassword" className="form-control" placeholder="Password"
                             required />
-                        {/* Account edit FLASK */}
                         <button className="btn btn-lg btn-primary btn-block mb-3" type="submit">Change</button>
                         <a className="color-black" href="#" data-toggle="modal" data-target="#deleteAccount">Want to delete your account?</a>
                     </form>
