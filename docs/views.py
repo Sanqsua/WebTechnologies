@@ -1,5 +1,5 @@
 from app import app, db, ma, bcrypt
-from flask import request, jsonify, render_template, redirect, flash, url_for, session
+from flask import request, jsonify, render_template, redirect, flash, url_for, session, abort
 from models.BookModel import Book, BookSchema
 from models.UserModel import User, UserSchema
 from flask_login import login_user, current_user, logout_user, login_required
@@ -100,20 +100,26 @@ def createBook():
 #     return book_schema.jsonify(book)
 
 # update(put) book (an sich genau so wie add, nur anders)
-@app.route('/book/<id>', methods=['PUT'])
+@app.route('/editBook/<id>', methods=['POST'])
+@login_required
 def editBook(id):
-    updated_book = Book.query.get(id)
-    name = request.json['name']
-    author = request.json['author']
-    description = request.json['description']
-    price = request.json['price']
+    updated_book = Book.query.get_or_404(id)
+    
+    if updated_book.user_id != current_user.id:
+        abort(403)
+    name = request.form['editTitle']
+    price = request.form['editTitle']
+    description = request.form['editTitle']
+    author = request.form['editAuthor']
+    
 
     updated_book.name = name
     updated_book.price = price
     updated_book.description = description
     updated_book.author = author
     db.session.commit()
-    return book_schema.jsonify(updated_book)
+    flash('Book updated')
+    return redirect(url_for('renderHomepage'))
 
 
 @app.route('/getbooks', methods=['GET'])
@@ -122,14 +128,16 @@ def getAllBooks():
     result = book_schemas.dump(allbooks)
     return jsonify(result.data)
 
-#delete
+# delete
 @app.route('/deleteBook/<id>', methods=['POST'])
 def delete_book(id):
-    book_to_delete = Book.query.get(id)
+    book_to_delete = Book.query.get_or404(id)
+    if(book_to_delete.user != current_user):
+        abort(403)
     db.session.delete(book_to_delete)
     db.session.commit()
 
-    return book_schema.jsonify(book_to_delete)
+    return redirect(url_for('renderHomepage'))
 
 # Users
 
@@ -150,13 +158,14 @@ def get_Users():
 # delete
 @app.route('/user/<id>', methods=['DELETE'])
 def deleteUser(id):
-    userToDelete = User.query.get(id)
+    userToDelete = User.query.get_or_404(id)
+
     db.session.delete(userToDelete)
     db.session.commit()
     return user_schema.jsonify(userToDelete)
 
 
-@app.route('/user/<id>', methods=['PUT'])
+@app.route('/user/<id>', methods=['POST'])
 def update_user(id):
     user_to_update = User.query.get(id)
     name = request.json['name']
