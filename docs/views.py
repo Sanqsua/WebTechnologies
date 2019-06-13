@@ -123,7 +123,7 @@ def getAllBooks():
     return jsonify(result.data)
 
 #delete
-@app.route('/deleteBook/<id>', methods=['DELETE'])
+@app.route('/deleteBook/<id>', methods=['POST'])
 def delete_book(id):
     book_to_delete = Book.query.get(id)
     db.session.delete(book_to_delete)

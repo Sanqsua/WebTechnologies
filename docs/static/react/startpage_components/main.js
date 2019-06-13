@@ -68,7 +68,7 @@ class Main extends React.Component {
                 <a className="nav-link shadow-none" href="/home">Home</a>
              </li>  
              <a href="/logout">
-                    <button type="button" className="btn btn-primary ml-4 shadow-none" data-toggle="modal">
+                    <button type="button" className="btn btn-primary ml-4 shadow-none">
                      Sign out
                     </button>
              </a>
