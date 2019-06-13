@@ -24,6 +24,7 @@
     <!-- stylesheet -->
     <link rel="stylesheet" href="../static/css/style.css">
 
+</head>
 
 <body>
 
@@ -32,32 +33,33 @@
     <!-- Flash if not email or username for registration is already taken -->
     {% with messages = get_flashed_messages() %}
     {% if messages %}
-    <ul class=flashes>
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
+
+    {% for message in messages %}
+    <p class="text-danger text-center border border-danger">{{ message }}</p>
+    {% endfor %}
+
     {% endif %}
     {% endwith %}
 
     <div id="root"></div>
 
-   
+
 
     <!-- React JavaScript -->
     <script type="text/javascript">
-        var Obj = function (name, author, price, description, email) {
+        var Obj = function (name, author, price, description, email, username) {
             this.name = name;
             this.author = author;
             this.price = price;
             this.description = description;
             this.email = email;
+            this.username = username;
         }
 
         window.booksArray = [];
         '{% for book in books %}'
         window.booksArray.push(new Obj('{{book.name}}', '{{book.author}}', '{{book.price}}', '{{book.description}}',
-            '{{book.user.email}}'));
+            '{{book.user.email}}', '{{book.user.name}}'));
         '{% endfor %}'
     </script>
 
@@ -73,7 +75,7 @@
     <script src="../static/bootstrap/jquery-3.3.1.slim.min.js"></script>
     <script src="../static/bootstrap/popper.min.js"></script>
     <script src="../static/bootstrap/bootstrap.min.js"></script>
-   
+
 </body>
 
 </html>

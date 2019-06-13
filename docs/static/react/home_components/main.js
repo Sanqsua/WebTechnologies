@@ -23,11 +23,11 @@ class Main extends React.Component {
                <img className="float-left" src="..\static\assets\images\books.png" alt="placeholder-image"
                    width="100" height="100" />
                <div className="overflow-hidden color-black p-0 float-left">
-                   <p className="ml-2 my-1 font-italic"></p>
+                   <p className="ml-2 my-1 font-italic">Author: {books.author} </p>
                    <p className="ml-2 my-1 font-weight-bold">Price: {books.price} €</p>
                    <p><a className="ml-2 my-1 color-black" tabIndex={0} data-toggle="popover"
                            data-trigger="focus" data-placement="bottom" title="Description"
-                           data-content={books.description}>Description ▼</a></p>
+                           data-content={books.description}>Description ▷</a></p>
                </div>
                <div className="del-edit-buttons">
                     <a href="#">

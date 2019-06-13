@@ -73,10 +73,10 @@ body {
   right: 1%;
 }
 
-
 .book-box {
   transition: all 1s linear;
 }
+
 .visuallyhidden {
   opacity: 0;
 }

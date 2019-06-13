@@ -11,9 +11,9 @@ class Account extends React.Component {
                 <div className="modal-content text-center">
                         <form className="form-signin">
                         <h1 className="h3 mb-3 font-weight-normal">Your Account</h1>
-                        <p className="text-left">Username: blabla</p>
-                        <p className="text-left">Email address: blabla@blala.de</p>
-                        <p>Change password and/or Email address</p>
+                        <p className="text-left">Username: {booksArray[0].username}  </p>
+                        <p className="text-left">Email address: {booksArray[0].email} </p>
+                        <p>Change password and Email address</p>
                         <label htmlFor="inputEmail" className="sr-only">Email address</label>
                         <input type="email" id="inputEmail" className="form-control" placeholder="Email address"
                             required autofocus />
@@ -38,7 +38,9 @@ class Account extends React.Component {
                     </h2>
                     <div className="form-signin">
                         {/* Account delete FLASK */}
-                        <button type="button" className="btn btn-lg btn-danger mb-5">Delete Account</button>
+                    <a href="/deleteAccount">
+                            <button type="button" className="btn btn-lg btn-danger mb-5">Delete Account</button>
+                    </a>
                     </div>
                 </div>
             </div>

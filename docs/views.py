@@ -43,10 +43,10 @@ def registrate():
     emailCheck = User.query.filter_by(email=accountEmail).first()
     userNameCheck = User.query.filter_by(name=accountUsername).first()
     if(emailCheck or userNameCheck):
-        flash('电脑说没有')
+        flash('The Email or username is already taken.')
         return redirect(url_for('renderStartpage'))
 
-    flash('You in nigger')
+    flash('Creating your account was successful.')
     db.session.add(user)  # add user to db
     db.session.commit()
     return redirect(url_for('renderStartpage'))
@@ -61,16 +61,17 @@ def login():
 
     if user and bcrypt.check_password_hash(user.password, inputPassword):
         login_user(user, remember=True)
-        flash('You logged in nigga as ' + str(user.name))
+        flash('You signed in as ' + str(user.name))
         return redirect(url_for('renderHomepage'))
     else:
-        return render_template('startpage.html')
+        flash('Sign in was not successful. Please try again.')
+        return redirect(url_for('renderStartpage'))
 
 
 @app.route('/logout', methods=['GET'])
 def logout():
     logout_user()
-    flash('You logged out mate ')
+    flash('Sign out was successful.')
     return redirect(url_for('renderStartpage'))
 
 # buch adden
