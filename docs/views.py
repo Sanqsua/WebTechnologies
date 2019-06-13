@@ -108,8 +108,8 @@ def editBook(id):
     if updated_book.user_id != current_user.id:
         abort(403)
     name = request.form['editTitle']
-    price = request.form['editTitle']
-    description = request.form['editTitle']
+    price = request.form['editPrice']
+    description = request.form['editDescription']
     author = request.form['editAuthor']
     
 
@@ -131,7 +131,7 @@ def getAllBooks():
 # delete
 @app.route('/deleteBook/<id>', methods=['POST'])
 def delete_book(id):
-    book_to_delete = Book.query.get_or404(id)
+    book_to_delete = Book.query.get_or_404(id)
     if(book_to_delete.user != current_user):
         abort(403)
     db.session.delete(book_to_delete)
@@ -149,40 +149,52 @@ def get_User_by_id(id):
     return user_schema.jsonify(userToGet)
 
 # Getallusers
-@app.route('/user', methods=['GET'])
+@app.route('/users', methods=['GET'])
 def get_Users():
     all_Users = User.query.all()
     result = user_schemas.dump(all_Users)
     return jsonify(result.data)
 
 # delete user by ID
-@app.route('/user/<id>', methods=['DELETE'])
+@app.route('/deleteUser/<id>', methods=['POST'])
+@login_required
 def deleteUser(id):
     userToDelete = User.query.get_or_404(id)
-
+    logout_user()
     db.session.delete(userToDelete)
     db.session.commit()
-    return user_schema.jsonify(userToDelete)
+    return redirect(url_for('renderStartpage'))
 
 
-@app.route('/user/<id>', methods=['POST'])
+@app.route('/editUser/<id>', methods=['POST'])
+@login_required
 def update_user(id):
-    user_to_update = User.query.get(id)
-    name = request.json['name']
-    password = request.json['password']
-    email = request.json['email']
-
-    user_to_update.name = name
+    user_to_update = User.query.get_or_404(id)
+    email = request.form['editEmail']
+    password = request.form['editPassword']
     user_to_update.password = password
     user_to_update.email = email
     db.session.commit()
-    return user_schema.jsonify(user_to_update)
+    flash('user updated')
+    return redirect(url_for('renderHomepage'))
+# _____________________________________________________________________
+# @app.route('/editBook/<id>', methods=['POST'])
+# @login_required
+# def editBook(id):
+#     updated_book = Book.query.get_or_404(id)
+    
+#     if updated_book.user_id != current_user.id:
+#         abort(403)
+#     name = request.form['editTitle']
+#     price = request.form['editPrice']
+#     description = request.form['editDescription']
+#     author = request.form['editAuthor']
+    
 
-
-@app.route('/users', methods=['GET'])
-def getallusers():
-
-    users = User.query.all()
-    result = user_schemas.dump(users)
-
-    return book_schemas.jsonify(result.data)
+#     updated_book.name = name
+#     updated_book.price = price
+#     updated_book.description = description
+#     updated_book.author = author
+#     db.session.commit()
+#     flash('Book updated')
+#     return redirect(url_for('renderHomepage'))
