@@ -47,7 +47,8 @@
 
     <!-- React JavaScript -->
     <script type="text/javascript">
-        var Obj = function (name, author, price, description, email, username) {
+        var Obj = function (id, name, author, price, description, email, username) {
+            this.id = id;
             this.name = name;
             this.author = author;
             this.price = price;
@@ -58,7 +59,7 @@
 
         window.booksArray = [];
         '{% for book in books %}'
-        window.booksArray.push(new Obj('{{book.name}}', '{{book.author}}', '{{book.price}}', '{{book.description}}',
+        window.booksArray.push(new Obj('{{book.id}}', '{{book.name}}', '{{book.author}}', '{{book.price}}', '{{book.description}}',
             '{{book.user.email}}', '{{book.user.name}}'));
         '{% endfor %}'
     </script>

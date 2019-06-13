@@ -30,7 +30,7 @@ class Main extends React.Component {
                            data-content={books.description}>Description ▷</a></p>
                </div>
                <div className="del-edit-buttons">
-                    <a href="#">
+                    <a href={ '/deleteBook/' + books.id }>
                         <button className="btn btn-primary shadow-none delete-button" type="button" >Delete</button>
                     </a>
                    <a href="">

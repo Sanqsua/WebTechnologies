@@ -9,6 +9,7 @@ class Main extends React.Component {
     renderBooks= books => {
         const { search } = this.state;
     return (
+        
         <div className="col-12 col-md-4 p-3 book-box" key={books.id}>
             <div className="bg-light">
                 <h1 className="ml-2 book-title">{books.name}</h1>
@@ -17,15 +18,35 @@ class Main extends React.Component {
                 <div className="overflow-hidden color-black p-0 box">
                     <p className="ml-2 my-1 font-italic">Author: {books.author}</p>
                     <p className="ml-2 my-1 font-weight-bold">Price: {books.price} €</p>
-                    <p><a className="ml-2 my-1 color-black" tabIndex="0" data-toggle="popover" data-trigger="focus"
-                            data-placement="bottom" title="Description" data-content={books.description}>Description ▷</a>
+                    <p><a className="ml-2 my-1 color-black" href="#" data-toggle="modal" data-target="#showMoreModal">Description ▷</a>
                     </p>
                     <div className="email">
                          <a className="h1" href={'mailto:' + books.email + '?subject=Your Advert:' + books.name}>✉</a>
                     </div>
                 </div>
             </div>
+
+        <div className="modal fade" id="showMoreModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div className="modal-dialog" role="document">
+        <div className="modal-content text-center">              
+            <form className="form-signin">
+            <h3>{books.name}</h3>
+            <img className="mb-2" src="../static/assets/images/books.png" alt="Book" width="250" height="250" />
+            <p className="ml-2 my-1 float-left"><span className="font-weight-bold">Author:</span> {books.author}</p>
+            <p className="ml-2 my-1 "><span className="font-weight-bold">Price:</span> {books.price} €</p>
+            <h4>Description</h4>
+            <p className="ml-2 mb-2">{books.description}</p>
+            <p className="m-0">Contact user {books.username} to get the book!</p>
+            <a className="h1 color-black m-0" href={'mailto:' + books.email + '?subject=Your Advert:' + books.name}>✉</a>
+            </form>
         </div>
+        </div>
+        </div>
+        </div>
+
+    
+    
+
       );
     };
 
