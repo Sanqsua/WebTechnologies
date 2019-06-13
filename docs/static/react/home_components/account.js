@@ -9,10 +9,11 @@ class Account extends React.Component {
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content text-center">
-                        <form className="form-signin">
+                        <form className="form-signin"> {/* Account edit FLASK */}
                         <h1 className="h3 mb-3 font-weight-normal">Your Account</h1>
                         <p className="text-left">Username: {name}  </p>
                         <p className="text-left">Email address: {email} </p>
+                        <p>{userid}</p>
                         <p>Change Password and Email address</p>
                         <label htmlFor="inputEmail" className="sr-only">Email address</label>
                         <input type="email" id="inputEmail" className="form-control" placeholder="Email address"
@@ -20,7 +21,6 @@ class Account extends React.Component {
                         <label htmlFor="inputPassword" className="sr-only">Password</label>
                         <input type="password" id="inputPassword" className="form-control" placeholder="Password"
                             required />
-                        {/* Account edit FLASK */}
                         <button className="btn btn-lg btn-primary btn-block mb-3" type="submit">Change</button>
                         <a className="color-black" href="#" data-toggle="modal" data-target="#deleteAccount">Want to delete your account?</a>
                     </form>
@@ -36,12 +36,9 @@ class Account extends React.Component {
                     <h2 className="font-weight-normal m-3 mt-5">By clicking the button your account will permanently
                         deleted.
                     </h2>
-                    <div className="form-signin">
-                        {/* Account delete FLASK */}
-                    <a href="/deleteAccount">
-                            <button type="button" className="btn btn-lg btn-danger mb-5">Delete Account</button>
-                    </a>
-                    </div>
+                    <form className="form-signin" action={ '/deleteUser/' + userid } methods="POST">         
+                            <button type="submit" className="btn btn-lg btn-danger mb-5">Delete Account</button>
+                    </form>
                 </div>
             </div>
         </div>

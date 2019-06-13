@@ -57,7 +57,8 @@
 
         window.booksArray = [];
         '{% for book in books %}'
-        window.booksArray.push(new Obj('{{book.id}}', '{{book.name}}', '{{book.author}}', '{{book.price}}', '{{book.description}}',
+        window.booksArray.push(new Obj('{{book.id}}', '{{book.name}}', '{{book.author}}', '{{book.price}}',
+            '{{book.description}}',
             '{{book.user.email}}', '{{book.user.name}}'));
         '{% endfor %}'
 
@@ -66,7 +67,6 @@
         '{% else %}'
         login = false;
         '{% endif %}'
-
     </script>
 
     <script src="../static/react/react.development.js"></script>
