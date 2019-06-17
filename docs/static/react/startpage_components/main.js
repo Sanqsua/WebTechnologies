@@ -22,7 +22,7 @@ class Main extends React.Component {
                     <p><a className="ml-2 my-1 color-black" href="#" data-toggle="modal" data-target={ '#showMore' + books.id } >Show more ▷</a>
                     </p>
                     <div className="email">
-                         <a className="h1" href={'mailto:' + books.email + '?subject=Your Advert:' + books.name}>✉</a>
+                         <a className="h1" href={'mailto:' + books.email + '?subject=Your Advert: ' + books.name}>✉</a>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@ class Main extends React.Component {
             <h4>Description</h4>
             <p className="ml-2 mb-2">{books.description}</p>
             <p className="m-0">Contact user {books.username} to get the book!</p>
-            <a className="h1 color-black m-0" href={'mailto:' + books.email + '?subject=Your Advert:' + books.name}>✉</a>
+            <a className="h1 color-black m-0" href={'mailto:' + books.email + '?subject=Your Advert: d' + books.name}>✉</a>
             </form>
         </div>
         </div>
@@ -70,8 +70,8 @@ class Main extends React.Component {
              <li className="nav-item">
                 <a className="nav-link shadow-none" href="/home">Home</a>
              </li>  
-             <a href="/logout">  {/* Logut FLASK*/}
-                    <button type="button" className="btn btn-primary ml-4 shadow-none">
+             <a className="ml-4" href="/logout">  {/* Sign out FLASK*/}
+                    <button type="button" className="btn btn-primary shadow-none">
                      Sign out
                     </button>
              </a>

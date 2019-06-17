@@ -22,8 +22,8 @@ class Header extends React.Component {
                         <a className="nav-link" href="#exampleModalCenter" data-toggle="modal"
                             data-target="#exampleModalCenter">Account</a>
                     </li>
-                    <a href="/logout"> {/* Sign out FLASK */}
-                        <button type="button" className="btn btn-primary ml-4 shadow-none" data-toggle="modal">
+                    <a className="ml-4" href="/logout"> {/* Sign out FLASK */}
+                        <button type="button" className="btn btn-primary shadow-none" data-toggle="modal">
                             Sign out
                         </button>
                     </a>

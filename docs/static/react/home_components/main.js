@@ -47,7 +47,9 @@ class Main extends React.Component {
                         <p className="ml-2 my-1 "><span className="font-weight-bold">Price:</span> {books.price} €
                         </p>
                         <h4>Description</h4>
+                        <div>
                         <p className="ml-2 mb-2">{books.description}</p>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -61,17 +63,17 @@ class Main extends React.Component {
                     <form className="p-4" action={ '/editBook/' + books.id } method="POST"> {/* Edit book FLASK */}
                         <div className="form-group row">
                             <label htmlFor="editTitle">Title</label>
-                            <input className="form-control" id="editTitle" name="editTitle" type="text"
+                            <input maxlength="30" className="form-control" id="editTitle" name="editTitle" type="text"
                                 placeholder="Title" required />
                         </div>
                         <div className="form-group row">
                             <label htmlFor="editAuthor">Author</label>
-                            <input className="form-control" id="editAuthor" name="editAuthor" type="text"
+                            <input maxlength="30"className="form-control" id="editAuthor" name="editAuthor" type="text"
                                 placeholder="Author" required />
                         </div>
                         <div className="form-group row">
                             <label htmlFor="editDescription">Description</label>
-                            <textarea className="form-control" id="editDescription" name="editDescription"
+                            <textarea maxlength="300" className="form-control" id="editDescription" name="editDescription"
                                 rows={3} />
                             </div>
                 <div className="form-group row">
@@ -141,17 +143,17 @@ class Main extends React.Component {
                         <form action="/createBook" method="post"> {/* Form create book adverts FLASK  */}
                             <div className="form-group row">
                                 <label htmlFor="createTitle">Title</label>
-                                <input className="form-control" id="createTitle" name="createTitle" type="text"
+                                <input maxlength="30" className="form-control" id="createTitle" name="createTitle" type="text"
                                     placeholder="Title" required />
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="createAuthor">Author</label>
-                                <input className="form-control" id="createAuthor" name="createAuthor" type="text"
+                                <input maxlength="30" className="form-control" id="createAuthor" name="createAuthor" type="text"
                                     placeholder="Author" required />
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="createDescription">Description</label>
-                                <textarea className="form-control" id="createDescription" name="createDescription" rows={3} />
+                                <textarea maxlength="300" className="form-control" id="createDescription" name="createDescription" rows={3} />
                                 </div>
                     <div className="form-group row">
                     <div className="col-xs-2 p-0">

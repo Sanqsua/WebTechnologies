@@ -32,14 +32,14 @@ class Login extends React.Component {
                 <h1 className="h3 mb-3 font-weight-normal">Create your Account</h1>
                 <div className="form-group row">
                   <label htmlFor="accountUsername" className="sr-only">Username</label>
-                  <input type="username" id="accountUsername" name="accountUsername" className="form-control" placeholder="Username" required autoFocus/>
+                  <input maxlength="30" type="username" id="accountUsername" name="accountUsername" className="form-control" placeholder="Username" required autoFocus/>
                 </div>
                 <div className="form-group row">
                   <label htmlFor="accountEmail" className="sr-only">Email address</label>
-                  <input type="email" id="accountEmail" name="accountEmail" className="form-control" placeholder="Email address" required />
+                  <input maxlength="50" type="email" id="accountEmail" name="accountEmail" className="form-control" placeholder="Email address" required />
                 </div>
                 <div className="form-group row">
-                  <input type="password" id="accountPassword" name="accountPassword" className="form-control" placeholder="Password" required />
+                  <input maxlength="30" type="password" id="accountPassword" name="accountPassword" className="form-control" placeholder="Password" required />
                 </div>
                 <button className="btn btn-lg btn-primary btn-block shadow-none" type="submit">Create
                   Account</button>
