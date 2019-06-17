@@ -104,14 +104,13 @@ def createBook():
 @login_required
 def editBook(id):
     updated_book = Book.query.get_or_404(id)
-    
+
     if updated_book.user_id != current_user.id:
         abort(403)
     name = request.form['editTitle']
     price = request.form['editPrice']
     description = request.form['editDescription']
     author = request.form['editAuthor']
-    
 
     updated_book.name = name
     updated_book.price = price
@@ -161,7 +160,7 @@ def get_Users():
 def deleteUser():
     userToDelete = User.query.get_or_404(current_user.id)
     logout_user()
-    flash('Account ' +str(userToDelete)+ ' deleted')
+    flash('Account ' + str(userToDelete) + ' deleted')
     db.session.delete(userToDelete)
     db.session.commit()
     return redirect(url_for('renderStartpage'))
@@ -173,27 +172,39 @@ def editUser():
     user_to_update = User.query.get_or_404(current_user.id)
     if(user_to_update.id != current_user.id):
         abort(403)
+    # Inputs
+    newUsername = request.form['editUsername']
     email = request.form['editEmail']
-    password = bcrypt.generate_password_hash(request.form['editPassword']).decode('utf-8')
-    
-    user_to_update.email = email
-    user_to_update.password = password
-    db.session.commit()
-    flash('user updated')
+    password = bcrypt.generate_password_hash(
+        request.form['editNewPassword']).decode('utf-8')
+    current_Password = bcrypt.generate_password_hash(
+        request.form['editCurrentPassword']).decode('utf-8')
+# Passwordcheck and User not in database check
+    currentPasswordCheck = bcrypt.check_password_hash(
+        user_to_update, current_Password)
+    usernameNotInDataBase = not User.query.filter_by(name=newUsername).first()
+    if(currentPasswordCheck and usernameNotInDataBase):
+        user_to_update.email = email
+        user_to_update.password = password
+        db.session.commit()
+        flash('user updated')
+    else:
+        flash('Sumting nod gud et is!')
+
     return redirect(url_for('renderHomepage'))
 # _____________________________________________________________________
 # @app.route('/editBook/<id>', methods=['POST'])
 # @login_required
 # def editBook(id):
 #     updated_book = Book.query.get_or_404(id)
-    
+
 #     if updated_book.user_id != current_user.id:
 #         abort(403)
 #     name = request.form['editTitle']
 #     price = request.form['editPrice']
 #     description = request.form['editDescription']
 #     author = request.form['editAuthor']
-    
+
 
 #     updated_book.name = name
 #     updated_book.price = price
