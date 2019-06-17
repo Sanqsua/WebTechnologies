@@ -15,16 +15,16 @@ class Account extends React.Component {
                                 <p className="text-center">Email address: {email} </p>
                                 <p className="text-center font-weight-bold">Change account information</p>
                                 <label htmlFor="inputUsername">Change username</label>
-                                <input type="text" id="inputUsername" name ="editUsername" className="form-control" placeholder="New username"
+                                <input maxlength="30" type="text" id="inputUsername" name ="editUsername" className="form-control" placeholder="New username"
                                     />
                                 <label className="mt-2" htmlFor="inputEmail" >Change Email address</label>
-                                <input type="email" id="inputEmail" name ="editEmail" className="form-control" placeholder="New Email adress"
+                                <input maxlength="50" type="email" id="inputEmail" name ="editEmail" className="form-control" placeholder="New Email adress"
                                     />
                                 <label className="mt-2"htmlFor="inputNewPassword">Change password</label>
-                                <input type="password" id="inputNewPassword" name ="editNewPassword" className="form-control" placeholder="New password"
+                                <input maxlength="30" type="password" id="inputNewPassword" name ="editNewPassword" className="form-control" placeholder="New password"
                                     />
                                 <label className="mt-2 font-weight-bold" htmlFor="inputCurrentPassword">Type current password</label>
-                                <input type="password" id="inputCurrentPassword" name ="editCurrentPassword"className="form-control" placeholder="Current Password"
+                                <input maxlength="30" type="password" id="inputCurrentPassword" name ="editCurrentPassword"className="form-control" placeholder="Current Password"
                                     required />
                                 <button className="btn btn-lg btn-primary btn-block mb-3" type="submit">Change</button>
                                 <div className="text-center">
