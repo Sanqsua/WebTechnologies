@@ -177,14 +177,19 @@ def editUser():
     email = request.form['editEmail']
     password = bcrypt.generate_password_hash(
         request.form['editNewPassword']).decode('utf-8')
-    current_Password = bcrypt.generate_password_hash(
-        request.form['editCurrentPassword']).decode('utf-8')
+    current_Password = request.form['editCurrentPassword']
 # Passwordcheck and User not in database check
     currentPasswordCheck = bcrypt.check_password_hash(
-        user_to_update, current_Password)
+        user_to_update.password, current_Password)
     usernameNotInDataBase = not User.query.filter_by(name=newUsername).first()
-    if(currentPasswordCheck and usernameNotInDataBase):
+#Look if strings is not empty
+    if newUsername:
+        user_to_update.name = newUsername
+    if email:
         user_to_update.email = email
+    if password:
+        user_to_update.password = password
+    if(currentPasswordCheck and usernameNotInDataBase):
         user_to_update.password = password
         db.session.commit()
         flash('user updated')
