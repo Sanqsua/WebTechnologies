@@ -176,10 +176,8 @@ def editUser():
     newUsername = request.form['editUsername']
 
     email = request.form['editEmail']
-    password = None
-    if request.form['editNewPassword']:
-        password = bcrypt.generate_password_hash(
-            request.form['editNewPassword']).decode('utf-8')
+
+    password = request.form['editNewPassword']
 
     current_Password = request.form['editCurrentPassword']
 # Passwordcheck and User not in database check
@@ -192,7 +190,11 @@ def editUser():
         user_to_update.name = newUsername
     if email:
         user_to_update.email = email
-    if password:
+    if not password:
+        password = user_to_update.password
+    else:
+        password = bcrypt.generate_password_hash(  # password encryption
+            request.form['editNewPassword']).decode('utf-8')
         user_to_update.password = password
 
     if(currentPasswordCheck and usernameNotInDataBase):
