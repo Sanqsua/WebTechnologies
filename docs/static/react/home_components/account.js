@@ -18,7 +18,7 @@ class Account extends React.Component {
                                 <input maxlength="30" type="text" id="inputUsername" name ="editUsername" className="form-control" placeholder="New username"
                                     />
                                 <label className="mt-2" htmlFor="inputEmail" >Change Email address</label>
-                                <input maxlength="50" type="email" id="inputEmail" name ="editEmail" className="form-control" placeholder="New Email adress"
+                                <input maxlength="50" type="email" id="inputEmail" name ="editEmail" className="form-control" placeholder="New Email address"
                                     />
                                 <label className="mt-2"htmlFor="inputNewPassword">Change password</label>
                                 <input maxlength="30" type="password" id="inputNewPassword" name ="editNewPassword" className="form-control" placeholder="New password"

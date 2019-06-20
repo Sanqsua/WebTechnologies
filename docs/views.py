@@ -89,7 +89,7 @@ def createBook():
 
     db.session.add(new_Book)
     db.session.commit()
-    flash('book added')
+    flash('Book added.')
     # book_schema.jsonify(new_Book)
     return redirect(url_for('renderHomepage'))
 
@@ -117,7 +117,7 @@ def editBook(id):
     updated_book.description = description
     updated_book.author = author
     db.session.commit()
-    flash('Book updated')
+    flash('Book updated.')
     return redirect(url_for('renderHomepage'))
 
 
@@ -160,7 +160,7 @@ def get_Users():
 def deleteUser():
     userToDelete = User.query.get_or_404(current_user.id)
     logout_user()
-    flash('Account ' + str(userToDelete) + ' deleted')
+    flash('Account ' + str(userToDelete) + ' deleted.')
     db.session.delete(userToDelete)
     db.session.commit()
     return redirect(url_for('renderStartpage'))
@@ -200,9 +200,9 @@ def editUser():
     if(currentPasswordCheck and usernameNotInDataBase):
         user_to_update.password = password
         db.session.commit()
-        flash('user updated')
+        flash('Account information updated.')
     else:
-        flash('Sumting nod gud et is!')
+        flash('Current password wrong or username/Email already taken.')
 
     return redirect(url_for('renderHomepage'))
 # _____________________________________________________________________
