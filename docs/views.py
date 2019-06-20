@@ -1,16 +1,10 @@
-from app import app, db, ma, bcrypt
+from app import app, db, bcrypt,Book,User
 from flask import request, jsonify, render_template, redirect, flash, url_for, session, abort
-from models.BookModel import Book, BookSchema
-from models.UserModel import User, UserSchema
+
 from flask_login import login_user, current_user, logout_user, login_required
 
 # Bücher erstellen
 # Erstellen Book (Post)
-book_schema = BookSchema(strict=True)
-book_schemas = BookSchema(many=True, strict=True)
-user_schema = UserSchema(strict=True)
-user_schemas = UserSchema(many=True, strict=True)
-
 # Startseite mit allen Bücher werden angezeigt
 @app.route('/', methods=['GET'])
 @app.route('/startpage', methods=['GET'])
@@ -90,14 +84,8 @@ def createBook():
     db.session.add(new_Book)
     db.session.commit()
     flash('Book added.')
-    # book_schema.jsonify(new_Book)
     return redirect(url_for('renderHomepage'))
 
-# getBook durch <id> (query parameter)
-# @app.route('/book/<id>', methods=['GET'])
-# def get_Book_by_id(id):
-#     book = Book.query.get(id)
-#     return book_schema.jsonify(book)
 
 # update(put) book (an sich genau so wie add, nur anders)
 @app.route('/editBook/<id>', methods=['POST'])
@@ -142,17 +130,17 @@ def delete_book(id):
 
 
 # get userbyid
-@app.route('/user/<id>', methods=['GET'])
-def get_User_by_id(id):
-    userToGet = User.query.get(id)
-    return user_schema.jsonify(userToGet)
+# @app.route('/user/<id>', methods=['GET'])
+# def get_User_by_id(id):
+#     userToGet = User.query.get(id)
+#     return user_schema.jsonify(userToGet)
 
 # Getallusers
-@app.route('/users', methods=['GET'])
-def get_Users():
-    all_Users = User.query.all()
-    result = user_schemas.dump(all_Users)
-    return jsonify(result.data)
+# @app.route('/users', methods=['GET'])
+# def get_Users():
+#     all_Users = User.query.all()
+#     result = user_schemas.dump(all_Users)
+#     return jsonify(result.data)
 
 # delete user by ID
 @app.route('/deleteUser/')
