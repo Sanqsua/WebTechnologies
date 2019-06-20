@@ -29,7 +29,7 @@
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
-    <!-- Flash if not email or username for registration is already taken -->
+    <!-- Flash messages -->
     {% with messages = get_flashed_messages() %}
     {% if messages %}
 
@@ -42,7 +42,7 @@
 
     <div id="root"></div>
 
-    <!-- React JavaScript -->
+    <!-- Import Jinja to JS variables -->
     <script type="text/javascript">
         var Obj = function (id, name, author, price, description, email, username) {
             this.id = id;
@@ -69,6 +69,7 @@
         '{% endif %}'
     </script>
 
+    <!-- React Javascript -->
     <script src="../static/react/react.development.js"></script>
     <script src="../static/react/react-dom.development.js"></script>
     <script src="../static/react/babel.min.js"></script>
@@ -76,7 +77,6 @@
     <script src="../static/react/startpage_components/login.js" type="text/babel"></script>
     <script src="../static/react/startpage_components/footer.js" type="text/babel"></script>
     <script src="../static/react/render_startpage.js" type="text/babel"></script>
-
 
     <!-- Bootstrap JavaScript -->
     <script src="../static/bootstrap/jquery-3.3.1.slim.min.js"></script>

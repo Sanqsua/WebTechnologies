@@ -73,15 +73,21 @@ class Main extends React.Component {
                         </div>
                         <div className="form-group row">
                             <label htmlFor="editDescription">Description</label>
-                            <textarea maxlength="300" className="form-control" id="editDescription" name="editDescription"
-                                rows={3} />
+                            <textarea maxlength="300" className="form-control" id="editDescription" name="editDescription" placeholder="Description"  rows={3}></textarea>
                             </div>
-                <div className="form-group row">
-                    <div className="col-xs-2 p-0">
-                    <label htmlFor="editPrice">Price in €</label>
-                    <input className="form-control" id="editPrice" name="editPrice" type="number" min={0} placeholder="Price"  required />
-                    </div>
-                </div>
+                        <div className="form-group row">
+                            <div className="col-xs-2 p-0">
+                            <label htmlFor="editPrice">Price in €</label>
+                            <input className="form-control" id="editPrice" name="editPrice" type="number" min={0} placeholder="Price"  required />
+                            </div>
+                        </div>
+                        <div className="form-group row">
+                        <div className="custom-file my-4">
+                                <input type="file" className="custom-file-input" name="image" id="image"
+                                aria-describedby="ImageFile" required />
+                                <label className="custom-file-label" for="image">Upload Image</label>
+                        </div>
+                        </div>
                 <div className="text-center">
                     <button className="btn btn-primary shadow-none" type="reset">Reset</button>
                     <button className="btn btn-primary shadow-none" type="submit">Submit</button>
@@ -99,7 +105,6 @@ class Main extends React.Component {
     onchange = e => {
         this.setState({ search: e.target.value });
     };
-    
 
     /* Render Filteredbooks */
     render() {
@@ -153,13 +158,19 @@ class Main extends React.Component {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="createDescription">Description</label>
-                                <textarea maxlength="300" className="form-control" id="createDescription" name="createDescription" rows={3} />
+                                <textarea maxlength="300" className="form-control" id="createDescription" name="createDescription"  placeholder="Description" rows={3}></textarea>
                                 </div>
-                    <div className="form-group row">
-                    <div className="col-xs-2 p-0">
-                        <label htmlFor="createPrice">Price in €</label>
-                        <input className="form-control" id="createPrice" name="createPrice" type="number" min={0} placeholder="Price" required />
-                    </div>
+                            <div className="form-group row">
+
+                            <div className="col-xs-2 p-0">
+                                <label htmlFor="createPrice">Price in €</label>
+                                <input className="form-control" id="createPrice" name="createPrice" type="number" min={0} placeholder="Price" required />
+                            </div>                           
+                            <div className="custom-file my-4">
+                                <input type="file" className="custom-file-input" name="image" id="image"
+                                aria-describedby="ImageFile" required />
+                                <label className="custom-file-label" for="image">Upload Image</label>
+                            </div>
                     </div>
                     <div className="text-center">
                     <button className="btn btn-primary shadow-none" type="reset">Reset</button>
