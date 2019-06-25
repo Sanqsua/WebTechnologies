@@ -25,13 +25,15 @@ class Main extends React.Component {
             </p>
         </div>
         <div className="del-edit-buttons">
-            <form className="float-left" action={ '/deleteBook/' + books.id } method="post"> {/* Delete book FLASK */}
-                <button className="btn btn-primary shadow-none delete-button" type="submit">Delete</button>
-            </form>
+            <button data-toggle="modal" data-target={ '#addImageModal' + books.id }
+                className="btn btn-primary shadow-none mx-1">Add Image</button>
 
             <button data-toggle="modal" data-target={ '#editModal' + books.id }
-                className="btn btn-primary shadow-none">Edit</button>
+                className="btn btn-primary shadow-none mx-1">Edit</button>
 
+            <form className="float-right" action={ '/deleteBook/' + books.id } method="post"> {/* Delete book FLASK */}
+                <button className="btn btn-primary shadow-none delete-button mx-1" type="submit">Delete</button>
+            </form>
         </div>
 
         {/* Show more Modal*/}
@@ -84,7 +86,7 @@ class Main extends React.Component {
                         <div className="form-group row">
                         <div className="custom-file my-4">
                                 <input type="file" className="custom-file-input" name="image" id="image"
-                                aria-describedby="ImageFile" required />
+                                aria-describedby="ImageFile" />
                                 <label className="custom-file-label" for="image">Upload Image</label>
                         </div>
                         </div>
@@ -92,6 +94,22 @@ class Main extends React.Component {
                     <button className="btn btn-primary shadow-none" type="reset">Reset</button>
                     <button className="btn btn-primary shadow-none" type="submit">Submit</button>
                 </div>
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <div className="modal fade" id={ 'addImageModal' + books.id } tabIndex={-1} role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered" role="document">
+                <div className="modal-content">
+                    <form className="p-4" action={ '/addImage/' + books.id } method="POST"> {/* Add ImageFLASK */}
+                    <div className="custom-file my-4">
+                                <input type="file" className="custom-file-input" name="image" id="image"
+                                aria-describedby="ImageFile" required />
+                                <label className="custom-file-label" for="image">Upload Image</label>
+                    </div>
+                    <button className="btn btn-primary shadow-none" type="submit">Submit</button>
                 </form>
             </div>
             </div>
@@ -168,7 +186,7 @@ class Main extends React.Component {
                             </div>                           
                             <div className="custom-file my-4">
                                 <input type="file" className="custom-file-input" name="image" id="image"
-                                aria-describedby="ImageFile" required />
+                                aria-describedby="ImageFile" />
                                 <label className="custom-file-label" for="image">Upload Image</label>
                             </div>
                     </div>
