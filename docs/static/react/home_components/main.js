@@ -103,7 +103,7 @@ class Main extends React.Component {
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
-                    <form className="p-4" action={ '/addImage/' + books.id } method="POST"> {/* Add ImageFLASK */}
+                    <form className="p-4" action={ '/addImage/' + books.id } method="POST" enctype="multipart/form-data"> {/* Add ImageFLASK */}
                     <div className="custom-file my-4">
                                 <input type="file" className="custom-file-input" name="image" id="image"
                                 aria-describedby="ImageFile" required />

@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 from app import app, db, bcrypt, Book, User
 from flask import request, jsonify, render_template, redirect, flash, url_for, session, abort
 from flask_login import login_user, current_user, logout_user, login_required
-
+from config import ALLOWED_EXTENSIONS, IMAGE_UPLOADS
 # Bücher erstellen
 # Erstellen Book (Post)
 # Startseite mit allen Bücher werden angezeigt
@@ -52,7 +52,6 @@ def registrate():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     inputEmail = request.form['loginEmail']
-    
     inputPassword = request.form['loginPassword']
     user = User.query.filter_by(email=inputEmail).first()
 
@@ -102,9 +101,6 @@ def editBook(id):
         price = request.form['editPrice']
         description = request.form['editDescription']
         author = request.form['editAuthor']
-        image_file = request.files['image_file']
-        # picturefile = save_picture(image_file)
-        # updated_book.image_file = picturefile
 
         updated_book.name = name
         updated_book.price = price
@@ -115,11 +111,35 @@ def editBook(id):
     return redirect(url_for('renderHomepage'))
 
 
-@app.route('/getbooks', methods=['GET'])
-def getAllBooks():
-    allbooks = Book.query.all()
-    result = book_schemas.dump(allbooks)
-    return jsonify(result.data)
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/addImage/<id>', methods=["GET","POST"])
+def addImage(id):
+    book = Book.query.get(id)
+
+    if request.method == "POST":
+       if request.files:
+
+            image = request.files["image"]
+
+            if(image.filename == ''):
+                print("Image must have a filename")
+                return redirect(request.url)
+            if not allowed_file(image.filename):
+                print ("dude wrongu namu")
+                return redirect(request.url)
+            else: 
+                filename = secure_filename(image.filename)
+                book.image_file = filename
+                image.save(os.path.join(IMAGE_UPLOADS, filename))
+
+            print("Image saved")
+
+            return redirect(request.url)
+    return redirect(url_for('renderHomepage'))
 
 # delete
 @app.route('/deleteBook/<id>', methods=['POST'])
@@ -195,38 +215,3 @@ def save_picture(form_picture):
         app.root_path, 'static/assets/images', picture_fn)
     form_picture.save(picture_path)
     return picture_fn
-
-
-# @app.route('/editBook/<id>', methods=['POST'])
-# @login_required
-# def editBook(id):
-#     updated_book = Book.query.get_or_404(id)
-
-#     if updated_book.user_id != current_user.id:
-#         abort(403)
-#     name = request.form['editTitle']
-#     price = request.form['editPrice']
-#     description = request.form['editDescription']
-#     author = request.form['editAuthor']
-
-
-#     updated_book.name = name
-#     updated_book.price = price
-#     updated_book.description = description
-#     updated_book.author = author
-#     db.session.commit()
-#     flash('Book updated')
-#     return redirect(url_for('renderHomepage'))
-
-# get userbyid
-# @app.route('/user/<id>', methods=['GET'])
-# def get_User_by_id(id):
-#     userToGet = User.query.get(id)
-#     return user_schema.jsonify(userToGet)
-
-# Getallusers
-# @app.route('/users', methods=['GET'])
-# def get_Users():
-#     all_Users = User.query.all()
-#     result = user_schemas.dump(all_Users)
-#     return jsonify(result.data)
