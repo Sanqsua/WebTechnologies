@@ -44,7 +44,7 @@
 
     <!-- Import Jinja to JS variables -->
     <script type="text/javascript">
-        var Obj = function (id, name, author, price, description, email, username) {
+        var Obj = function (id, name, author, price, description, email, username ,image) {
             this.id = id;
             this.name = name;
             this.author = author;
@@ -52,14 +52,14 @@
             this.description = description;
             this.email = email;
             this.username = username;
+            this.image = image;
         }
         var login = false;
 
         window.booksArray = [];
         '{% for book in books %}'
         window.booksArray.push(new Obj('{{book.id}}', '{{book.name}}', '{{book.author}}', '{{book.price}}',
-            '{{book.description}}',
-            '{{book.user.email}}', '{{book.user.name}}'));
+            '{{book.description}}', '{{book.user.email}}', '{{book.user.name}}','{{book.image_file}}'));
         '{% endfor %}'
 
         '{% if current_user.is_authenticated %}'
