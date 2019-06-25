@@ -1,6 +1,8 @@
-from app import app, db, bcrypt,Book,User
+import secrets
+import os
+from werkzeug.utils import secure_filename
+from app import app, db, bcrypt, Book, User
 from flask import request, jsonify, render_template, redirect, flash, url_for, session, abort
-
 from flask_login import login_user, current_user, logout_user, login_required
 
 # Bücher erstellen
@@ -49,8 +51,8 @@ def registrate():
 # LOGIN
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-
     inputEmail = request.form['loginEmail']
+    
     inputPassword = request.form['loginPassword']
     user = User.query.filter_by(email=inputEmail).first()
 
@@ -92,20 +94,24 @@ def createBook():
 @login_required
 def editBook(id):
     updated_book = Book.query.get_or_404(id)
-
     if updated_book.user_id != current_user.id:
         abort(403)
-    name = request.form['editTitle']
-    price = request.form['editPrice']
-    description = request.form['editDescription']
-    author = request.form['editAuthor']
 
-    updated_book.name = name
-    updated_book.price = price
-    updated_book.description = description
-    updated_book.author = author
-    db.session.commit()
-    flash('Book updated.')
+    if request.method == 'POST':
+        name = request.form['editTitle']
+        price = request.form['editPrice']
+        description = request.form['editDescription']
+        author = request.form['editAuthor']
+        image_file = request.files['image_file']
+        # picturefile = save_picture(image_file)
+        # updated_book.image_file = picturefile
+
+        updated_book.name = name
+        updated_book.price = price
+        updated_book.description = description
+        updated_book.author = author
+        db.session.commit()
+        flash('Book updated.')
     return redirect(url_for('renderHomepage'))
 
 
@@ -127,21 +133,6 @@ def delete_book(id):
     return redirect(url_for('renderHomepage'))
 
 # Users
-
-
-# get userbyid
-# @app.route('/user/<id>', methods=['GET'])
-# def get_User_by_id(id):
-#     userToGet = User.query.get(id)
-#     return user_schema.jsonify(userToGet)
-
-# Getallusers
-# @app.route('/users', methods=['GET'])
-# def get_Users():
-#     all_Users = User.query.all()
-#     result = user_schemas.dump(all_Users)
-#     return jsonify(result.data)
-
 # delete user by ID
 @app.route('/deleteUser/')
 @login_required
@@ -194,6 +185,18 @@ def editUser():
 
     return redirect(url_for('renderHomepage'))
 # _____________________________________________________________________
+
+
+def save_picture(form_picture):
+    randomhex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = randomhex+f_ext
+    picture_path = os.path.join(
+        app.root_path, 'static/assets/images', picture_fn)
+    form_picture.save(picture_path)
+    return picture_fn
+
+
 # @app.route('/editBook/<id>', methods=['POST'])
 # @login_required
 # def editBook(id):
@@ -214,3 +217,16 @@ def editUser():
 #     db.session.commit()
 #     flash('Book updated')
 #     return redirect(url_for('renderHomepage'))
+
+# get userbyid
+# @app.route('/user/<id>', methods=['GET'])
+# def get_User_by_id(id):
+#     userToGet = User.query.get(id)
+#     return user_schema.jsonify(userToGet)
+
+# Getallusers
+# @app.route('/users', methods=['GET'])
+# def get_Users():
+#     all_Users = User.query.all()
+#     result = user_schemas.dump(all_Users)
+#     return jsonify(result.data)

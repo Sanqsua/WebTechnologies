@@ -60,7 +60,7 @@ class Main extends React.Component {
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
-                    <form className="p-4" action={ '/editBook/' + books.id } method="POST"> {/* Edit book FLASK */}
+                    <form className="p-4" action={'/editBook/' + books.id } method="POST"> {/* Edit book FLASK */}
                         <div className="form-group row">
                             <label htmlFor="editTitle">Title</label>
                             <input maxlength="30" className="form-control" id="editTitle" name="editTitle" type="text"

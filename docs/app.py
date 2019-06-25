@@ -19,8 +19,7 @@ class Book(db.Model):
     author = db.Column(db.String(30))
     description = db.Column(db.String(300))
     price = db.Column(db.Float)
-    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
-
+    image_file = db.Column(db.String(20))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     
     def __init__(self, name, author, description, price, user_id):
@@ -28,7 +27,6 @@ class Book(db.Model):
         self.author = author
         self.description = description
         self.price = price
-        # self.image_file = image_file
         self.user_id = user_id
 
 @login_manager.user_loader
