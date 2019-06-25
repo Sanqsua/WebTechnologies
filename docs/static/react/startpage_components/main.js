@@ -14,7 +14,7 @@ class Main extends React.Component {
         <div className="col-12 col-md-4 p-3 book-box" key={books.id}>
             <div className="bg-light">
                 <h1 className="ml-2 book-title">{books.name}</h1>
-                <img className="float-left" src="../static/assets/images/books.png" alt="Book" width="100"
+                <img className="float-left" src={'../static/assets/images/' + books.image } alt="Book" width="100"
                     height="100" />
                 <div className="overflow-hidden color-black p-0 box">
                     <p className="ml-2 my-1 font-italic">Author: {books.author}</p>
@@ -33,7 +33,7 @@ class Main extends React.Component {
         <div className="modal-content text-center">              
             <form className="form-signin">
             <h3>{books.name}</h3>
-            <img className="mb-2" src="../static/assets/images/books.png" alt="Book" width="250" height="250" />
+            <img className="mb-2" src={'../static/assets/images/' + books.image } alt="Book" width="250" height="250" />
             <p className="ml-2 my-1 float-left"><span className="font-weight-bold">Author:</span> {books.author}</p>
             <p className="ml-2 my-1 "><span className="font-weight-bold">Price:</span> {books.price} €</p>
             <h4>Description</h4>
