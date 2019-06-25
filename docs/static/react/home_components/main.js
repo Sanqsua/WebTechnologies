@@ -44,7 +44,7 @@ class Main extends React.Component {
                     <form className="form-signin">
                         <h3>{books.name}</h3>
                         
-                        <img className="mb-2" src="../static/assets/images/books.png" alt="Book" width="250"
+                        <img className="mb-2" src={'../static/assets/images/' + books.image } alt="Book" width="250"
                             height="250" />
                         <p className="ml-2 my-1 float-left"><span className="font-weight-bold">Author:</span> {books.author}</p>
                         <p className="ml-2 my-1 "><span className="font-weight-bold">Price:</span> {books.price} €
