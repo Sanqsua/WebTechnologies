@@ -134,6 +134,7 @@ def addImage(id):
             else: 
                 filename = secure_filename(image.filename)
                 book.image_file = filename
+                db.session.commit()
                 image.save(os.path.join(IMAGE_UPLOADS, filename))
 
             print("Image saved")

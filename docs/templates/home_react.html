@@ -53,7 +53,7 @@
             this.description = description;
             this.email = email;
             this.username = username;
-            this.image_file = image;
+            this.image = image;
         }
 
         window.userid = '{{user.id}}';
@@ -63,8 +63,8 @@
         window.booksArray = [];
         '{% for book in books %}'
         window.booksArray.push(new Obj('{{book.id}}', '{{book.name}}', '{{book.author}}', '{{book.price}}',
-            '{{book.description}}','book.image_file',
-            '{{book.user.email}}', '{{book.user.name}}'));
+            '{{book.description}}',
+            '{{book.user.email}}', '{{book.user.name}}','{{book.image_file}}'));
         '{% endfor %}'
     </script>
 
