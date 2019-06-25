@@ -15,7 +15,7 @@ class Main extends React.Component {
     <div className="row bg-light my-3 mx-1 p-2 box book-box" key={books.id}>
     <div>
         <h1 className="book-title">{books.name}</h1>
-        <img className="float-left" src="..\static\assets\images\books.png" alt="placeholder-image" width="100"
+        <img className="float-left" src={'../static/assets/images/' + books.image } alt="placeholder-image" width="100"
             height="100" />
         <div className="overflow-hidden color-black p-0 float-left">
             <p className="ml-2 my-1 font-italic">Author: {books.author} </p>
@@ -43,6 +43,7 @@ class Main extends React.Component {
                 <div className="modal-content text-center">
                     <form className="form-signin">
                         <h3>{books.name}</h3>
+                        
                         <img className="mb-2" src="../static/assets/images/books.png" alt="Book" width="250"
                             height="250" />
                         <p className="ml-2 my-1 float-left"><span className="font-weight-bold">Author:</span> {books.author}</p>
@@ -65,17 +66,17 @@ class Main extends React.Component {
                     <form className="p-4" action={'/editBook/' + books.id } method="POST"> {/* Edit book FLASK */}
                         <div className="form-group row">
                             <label htmlFor="editTitle">Title</label>
-                            <input maxlength="30" className="form-control" id="editTitle" name="editTitle" type="text"
+                            <input maxLength="30" className="form-control" id="editTitle" name="editTitle" type="text"
                                 placeholder="Title" required />
                         </div>
                         <div className="form-group row">
                             <label htmlFor="editAuthor">Author</label>
-                            <input maxlength="30"className="form-control" id="editAuthor" name="editAuthor" type="text"
+                            <input maxLength="30"className="form-control" id="editAuthor" name="editAuthor" type="text"
                                 placeholder="Author" required />
                         </div>
                         <div className="form-group row">
                             <label htmlFor="editDescription">Description</label>
-                            <textarea maxlength="300" className="form-control" id="editDescription" name="editDescription" placeholder="Description"  rows={3}></textarea>
+                            <textarea maxLength="300" className="form-control" id="editDescription" name="editDescription" placeholder="Description"  rows={3}></textarea>
                             </div>
                         <div className="form-group row">
                             <div className="col-xs-2 p-0">
@@ -166,17 +167,17 @@ class Main extends React.Component {
                         <form action="/createBook" method="post"> {/* Form create book adverts FLASK  */}
                             <div className="form-group row">
                                 <label htmlFor="createTitle">Title</label>
-                                <input maxlength="30" className="form-control" id="createTitle" name="createTitle" type="text"
+                                <input maxLength="30" className="form-control" id="createTitle" name="createTitle" type="text"
                                     placeholder="Title" required />
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="createAuthor">Author</label>
-                                <input maxlength="30" className="form-control" id="createAuthor" name="createAuthor" type="text"
+                                <input maxLength="30" className="form-control" id="createAuthor" name="createAuthor" type="text"
                                     placeholder="Author" required />
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="createDescription">Description</label>
-                                <textarea maxlength="300" className="form-control" id="createDescription" name="createDescription"  placeholder="Description" rows={3}></textarea>
+                                <textarea maxLength="300" className="form-control" id="createDescription" name="createDescription"  placeholder="Description" rows={3}></textarea>
                                 </div>
                             <div className="form-group row">
 
