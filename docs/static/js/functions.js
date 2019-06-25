@@ -1,3 +1,5 @@
+/* Deprecated JS */
+
 document.getElementById('search-bar').onkeyup = function () {
     let input = document.getElementById('search-bar').value
     input = input.toLowerCase();
