@@ -158,7 +158,7 @@ class Main extends React.Component {
                     </div>
 
                     <div className="col-12 col-md-6 px-5 pt-3">
-                        <form action="/createBook" method="post"> {/* Form create book adverts FLASK  */}
+                        <form action="/createBook" method="POST" enctype="multipart/form-data"> {/* Form create book adverts FLASK  */}
                             <div className="form-group row">
                                 <label htmlFor="createTitle">Title</label>
                                 <input maxLength="30" className="form-control" id="createTitle" name="createTitle" type="text"
@@ -182,8 +182,8 @@ class Main extends React.Component {
                                                        
                             <div className="custom-file my-4">
                                 <input type="file" className="custom-file-input" name="createImage" id="image"
-                                aria-describedby="ImageFile" required />
-                                <label className="custom-file-label" for="image">Choose Image ..</label>
+                                aria-describedby="ImageFile" />
+                                <label className="custom-file-label" for="image">Upload Image</label>
                             </div>
                     </div>
                     <div className="text-center">
