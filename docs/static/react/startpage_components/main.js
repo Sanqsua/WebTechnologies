@@ -96,7 +96,7 @@ class Main extends React.Component {
                       <a className="navbar-brand" href="#">
                           <img src="../static/assets/images/logo_nav.png" className="rounded-circle" alt="Logo"
                               width="40" height="40" />
-                          <span className="ml-1">Book Road</span>
+                          <span className="ml-2">Book Road</span>
                       </a>
                   </div>
                   <ul className="nav navbar-nav">

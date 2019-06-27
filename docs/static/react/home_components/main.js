@@ -26,13 +26,13 @@ class Main extends React.Component {
         </div>
         <div className="del-edit-buttons">
             <button data-toggle="modal" data-target={ '#addImageModal' + books.id }
-                className="btn btn-primary shadow-none mx-1">Add Image</button>
+                className="btn btn-primary shadow-none mx-1">Edit Image</button>
 
             <button data-toggle="modal" data-target={ '#editModal' + books.id }
-                className="btn btn-primary shadow-none mx-1">Edit</button>
+                className="btn btn-primary shadow-none mx-1">Edit Text</button>
 
             <form className="float-right" action={ '/deleteBook/' + books.id } method="post"> {/* Delete book FLASK */}
-                <button className="btn btn-primary shadow-none delete-button mx-1" type="submit">Delete</button>
+                <button className="btn btn-primary shadow-none delete-button mx-1" type="submit">🗑</button>
             </form>
         </div>
 
@@ -84,13 +84,6 @@ class Main extends React.Component {
                             <input className="form-control" id="editPrice" name="editPrice" type="number" min={0} placeholder="Price"  required />
                             </div>
                         </div>
-                        <div className="form-group row">
-                        <div className="custom-file my-4">
-                                <input type="file" className="custom-file-input" name="image" id="image"
-                                aria-describedby="ImageFile" />
-                                <label className="custom-file-label" for="image">Upload Image</label>
-                        </div>
-                        </div>
                 <div className="text-center">
                     <button className="btn btn-primary shadow-none" type="reset">Reset</button>
                     <button className="btn btn-primary shadow-none" type="submit">Submit</button>
@@ -100,15 +93,16 @@ class Main extends React.Component {
             </div>
         </div>
 
+     {/* Add image modal */}
         <div className="modal fade" id={ 'addImageModal' + books.id } tabIndex={-1} role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered" role="document">
-                <div className="modal-content">
+                <div className="modal-content text-center">
                     <form className="p-4" action={ '/addImage/' + books.id } method="POST" enctype="multipart/form-data"> {/* Add ImageFLASK */}
                     <div className="custom-file my-4">
                                 <input type="file" className="custom-file-input" name="image" id="image"
                                 aria-describedby="ImageFile" required />
-                                <label className="custom-file-label" for="image">Upload Image</label>
+                                <label className="custom-file-label" for="image">Choose Image ..</label>
                     </div>
                     <button className="btn btn-primary shadow-none" type="submit">Submit</button>
                 </form>
@@ -184,11 +178,12 @@ class Main extends React.Component {
                             <div className="col-xs-2 p-0">
                                 <label htmlFor="createPrice">Price in €</label>
                                 <input className="form-control" id="createPrice" name="createPrice" type="number" min={0} placeholder="Price" required />
-                            </div>                           
+                            </div>
+                                                       
                             <div className="custom-file my-4">
-                                <input type="file" className="custom-file-input" name="image" id="image"
-                                aria-describedby="ImageFile" />
-                                <label className="custom-file-label" for="image">Upload Image</label>
+                                <input type="file" className="custom-file-input" name="createImage" id="image"
+                                aria-describedby="ImageFile" required />
+                                <label className="custom-file-label" for="image">Choose Image ..</label>
                             </div>
                     </div>
                     <div className="text-center">

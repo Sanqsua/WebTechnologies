@@ -160,7 +160,7 @@ def delete_book(id):
 def deleteUser():
     userToDelete = User.query.get_or_404(current_user.id)
     logout_user()
-    flash('Account ' + str(userToDelete) + ' deleted.')
+    flash('Account deleted.')
     db.session.delete(userToDelete)
     db.session.commit()
     return redirect(url_for('renderStartpage'))

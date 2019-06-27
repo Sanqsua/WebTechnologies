@@ -5,7 +5,6 @@ class Home extends React.Component {
         <Header />
         <Account />
         <Main />
-
       </div>
     )
   }
