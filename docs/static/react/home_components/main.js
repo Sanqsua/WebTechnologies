@@ -47,11 +47,11 @@ class Main extends React.Component {
                         <img className="mb-2" src={'../static/assets/images/' + books.image } alt="Book" width="250"
                             height="250" />
                         <p className="ml-2 my-1 float-left"><span className="font-weight-bold">Author:</span> {books.author}</p>
-                        <p className="ml-2 my-1 "><span className="font-weight-bold">Price:</span> {books.price} €
+                        <p className="ml-2 my-1"><span className="font-weight-bold">Price:</span> {books.price} €
                         </p>
                         <h4>Description</h4>
                         <div>
-                        <p className="ml-2 mb-2">{books.description}</p>
+                        <p className="ml-2 mb-2 text-left">{books.description}</p>
                         </div>
                     </form>
                 </div>
@@ -66,7 +66,7 @@ class Main extends React.Component {
                     <form className="p-4" action={'/editBook/' + books.id } method="POST"> {/* Edit book FLASK */}
                         <div className="form-group row">
                             <label htmlFor="editTitle">Title</label>
-                            <input maxLength="30" className="form-control" id="editTitle" name="editTitle" type="text"
+                            <input maxLength="80" className="form-control" id="editTitle" name="editTitle" type="text"
                                 placeholder="Title" required />
                         </div>
                         <div className="form-group row">
@@ -81,7 +81,7 @@ class Main extends React.Component {
                         <div className="form-group row">
                             <div className="col-xs-2 p-0">
                             <label htmlFor="editPrice">Price in €</label>
-                            <input className="form-control" id="editPrice" name="editPrice" type="number" min={0} placeholder="Price"  required />
+                            <input className="form-control" id="editPrice" name="editPrice" type="text" pattern="[0-9]+([.][0-9]{1})?" placeholder="Price"  required />
                             </div>
                         </div>
                 <div className="text-center">
@@ -161,7 +161,7 @@ class Main extends React.Component {
                         <form action="/createBook" method="POST" enctype="multipart/form-data"> {/* Form create book adverts FLASK  */}
                             <div className="form-group row">
                                 <label htmlFor="createTitle">Title</label>
-                                <input maxLength="30" className="form-control" id="createTitle" name="createTitle" type="text"
+                                <input maxLength="80" className="form-control" id="createTitle" name="createTitle" type="text"
                                     placeholder="Title" required />
                             </div>
                             <div className="form-group row">
@@ -177,7 +177,7 @@ class Main extends React.Component {
 
                             <div className="col-xs-2 p-0">
                                 <label htmlFor="createPrice">Price in €</label>
-                                <input className="form-control" id="createPrice" name="createPrice" type="number" min={0} placeholder="Price" required />
+                                <input className="form-control" id="createPrice" name="createPrice" type="text" pattern="[0-9]+([.][0-9]{1})?" placeholder="Price" required />
                             </div>
                                                        
                             <div className="custom-file my-4">

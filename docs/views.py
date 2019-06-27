@@ -97,7 +97,7 @@ def createBook():
 
             if not allowed_file(image.filename):
                 flash(
-                    "Filename has to be on of the following types: 'pdf', 'png', 'jpg', 'jpeg'")
+                    "Filename has to be on of the following types: 'pdf', 'png', 'jpg', 'jpeg'.")
                 return redirect(url_for("renderHomepage"))
             else:
                 filename = secure_filename(image.filename)
@@ -148,10 +148,10 @@ def addImage(id):
         if request.files:
             image = request.files["image"]
             if(image.filename == ''):
-                flash("Image must have a filename")
+                flash("Image must have a filename.")
                 return redirect(request.url)
             if not allowed_file(image.filename):
-                flash("dude wrongu namu")
+                flash("Filename has to be on of the following types: 'pdf', 'png', 'jpg', 'jpeg'.")
                 return redirect(request.url)
             else:
                 filename = secure_filename(image.filename)
@@ -159,7 +159,7 @@ def addImage(id):
                 db.session.commit()
                 image.save(os.path.join(IMAGE_UPLOADS, filename))
 
-            print("Image saved")
+            print("Image saved.")
 
             return redirect(request.url)
     return redirect(url_for('renderHomepage'))

@@ -15,7 +15,7 @@ login_manager = LoginManager(app) #durch verändern der Models, werden die sessi
 login_manager.login_view = 'login' # function for login_required
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30))
+    name = db.Column(db.String(80))
     author = db.Column(db.String(30))
     description = db.Column(db.String(300))
     price = db.Column(db.Float)

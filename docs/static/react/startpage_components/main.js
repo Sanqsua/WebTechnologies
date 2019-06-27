@@ -37,15 +37,14 @@ class Main extends React.Component {
             <p className="ml-2 my-1 float-left"><span className="font-weight-bold">Author:</span> {books.author}</p>
             <p className="ml-2 my-1 "><span className="font-weight-bold">Price:</span> {books.price} €</p>
             <h4>Description</h4>
-            <p className="ml-2 mb-2">{books.description}</p>
-            <p className="m-0">Contact user {books.username} to get the book!</p>
+            <p className="ml-2 mb-2 text-left">{books.description}</p>
+            <p className="m-0">Contact user <strong>{books.username}</strong> to get the book!</p>
             <a className="h1 color-black m-0" href={'mailto:' + books.email + '?subject=Your Advert: d' + books.name}>✉</a>
             </form>
         </div>
         </div>
         </div>
         </div>
-
       );
     };
 
