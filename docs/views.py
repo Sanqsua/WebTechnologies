@@ -75,17 +75,41 @@ def logout():
 # create and add book
 @app.route('/createBook', methods=['POST'])
 def createBook():
-    name = request.form['createTitle']
-    author = request.form['createAuthor']
-    description = request.form['createDescription']
-    price = request.form['createPrice']
-    user_id = current_user.id
-    new_Book = Book(name, author, description, price, user_id)
 
-    db.session.add(new_Book)
-    db.session.commit()
-    flash('Book added.')
-    return redirect(url_for('renderHomepage'))
+    if request.method == 'POST':
+        name = request.form['createTitle']
+        author = request.form['createAuthor']
+        description = request.form['createDescription']
+        price = request.form['createPrice']
+        user_id = current_user.id
+        print("book")
+        print(request.files)
+        if request.files:
+            image = request.files['createImage']
+            if(image.filename == ''):
+                print("OHNE IMAGE FILE")
+                print(user_id)
+                new_Book = Book(name, author, description, price, user_id)
+                db.session.add(new_Book)
+                db.session.commit()
+                flash('Book added.')
+                return redirect(url_for('renderHomepage'))
+
+            if not allowed_file(image.filename):
+                flash(
+                    "Filename has to be on of the following types: 'pdf', 'png', 'jpg', 'jpeg'")
+                return redirect(url_for("renderHomepage"))
+            else:
+                filename = secure_filename(image.filename)
+                image.save(os.path.join(IMAGE_UPLOADS, filename))
+                book_with_image = Book(
+                    name, author, description, price, user_id,filename)
+                db.session.add(book_with_image)
+                db.session.commit()
+                flash('Book with image added.')
+                return redirect(url_for('renderHomepage'))
+
+            return redirect(url_for('renderHomepage'))
 
 
 # update(put) book (an sich genau so wie add, nur anders)
@@ -116,22 +140,20 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app.route('/addImage/<id>', methods=["GET","POST"])
+@app.route('/addImage/<id>', methods=["GET", "POST"])
 def addImage(id):
     book = Book.query.get(id)
 
     if request.method == "POST":
-       if request.files:
-
+        if request.files:
             image = request.files["image"]
-
             if(image.filename == ''):
-                print("Image must have a filename")
+                flash("Image must have a filename")
                 return redirect(request.url)
             if not allowed_file(image.filename):
-                print ("dude wrongu namu")
+                flash("dude wrongu namu")
                 return redirect(request.url)
-            else: 
+            else:
                 filename = secure_filename(image.filename)
                 book.image_file = filename
                 db.session.commit()
