@@ -5,17 +5,18 @@
 ### Backend
 - Python
 - Flask
-- Jinja2 (Server side rending)
+- SQLAlchemy, SQLite
 
 ### Frontend
 - Bootstrap
-- React (is planned)
+- React 
+- Jinja  
 
 ### How to use
 
-1. Clone repo
+1. clone repo
 2. install pipenv
-3. pipenv shell
-4. cd docs
+3. cd docs
+4. pipenv shell
 5. python app.py
 6. install dependencies if necessary
