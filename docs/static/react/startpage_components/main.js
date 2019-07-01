@@ -18,7 +18,7 @@ class Main extends React.Component {
                     height="100" />
                 <div className="overflow-hidden color-black p-0 box">
                     <p className="ml-2 my-1 font-italic">Author: {books.author}</p>
-                    <p className="ml-2 my-1 font-weight-bold">Price: {books.price} €</p>
+                    <p className="ml-2 my-1 font-weight-bold">Price: {books.price}0 €</p>
                     <p><a className="ml-2 my-1 color-black" href="#" data-toggle="modal" data-target={ '#showMore' + books.id } >Show more ▷</a>
                     </p>
                     <div className="email">
@@ -35,7 +35,7 @@ class Main extends React.Component {
             <h3>{books.name}</h3>
             <img className="mb-2" src={'../static/assets/images/' + books.image } alt="Book" width="250" height="250" />
             <p className="ml-2 my-1 float-left"><span className="font-weight-bold">Author:</span> {books.author}</p>
-            <p className="ml-2 my-1 "><span className="font-weight-bold">Price:</span> {books.price} €</p>
+            <p className="ml-2 my-1 "><span className="font-weight-bold">Price:</span> {books.price}0 €</p>
             <h4>Description</h4>
             <p className="ml-2 mb-2 text-left">{books.description}</p>
             <p className="m-0">Contact user <strong>{books.username}</strong> to get the book!</p>

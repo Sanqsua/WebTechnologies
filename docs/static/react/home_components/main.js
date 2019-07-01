@@ -19,7 +19,7 @@ class Main extends React.Component {
             height="100" />
         <div className="overflow-hidden color-black p-0 float-left">
             <p className="ml-2 my-1 font-italic">Author: {books.author} </p>
-            <p className="ml-2 my-1 font-weight-bold">Price: {books.price} €</p>
+            <p className="ml-2 my-1 font-weight-bold">Price: {books.price}0 €</p>
             <p><a className="ml-2 my-1 color-black" href="#" data-toggle="modal" data-target={ '#showMore' +
                     books.id }>Show more ▷</a>
             </p>
@@ -47,7 +47,7 @@ class Main extends React.Component {
                         <img className="mb-2" src={'../static/assets/images/' + books.image } alt="Book" width="250"
                             height="250" />
                         <p className="ml-2 my-1 float-left"><span className="font-weight-bold">Author:</span> {books.author}</p>
-                        <p className="ml-2 my-1"><span className="font-weight-bold">Price:</span> {books.price} €
+                        <p className="ml-2 my-1"><span className="font-weight-bold">Price:</span> {books.price}0 €
                         </p>
                         <h4>Description</h4>
                         <div>
@@ -81,7 +81,7 @@ class Main extends React.Component {
                         <div className="form-group row">
                             <div className="col-xs-2 p-0">
                             <label htmlFor="editPrice">Price in €</label>
-                            <input className="form-control" id="editPrice" name="editPrice" type="text" pattern="[0-9]+([.][0-9]{1})?" placeholder="Price"  required />
+                            <input className="form-control" id="editPrice" name="editPrice" type="text" pattern="[0-9]{1,6}([.][0-9]{1})?" placeholder="Price" required />
                             </div>
                         </div>
                 <div className="text-center">
@@ -177,7 +177,7 @@ class Main extends React.Component {
 
                             <div className="col-xs-2 p-0">
                                 <label htmlFor="createPrice">Price in €</label>
-                                <input className="form-control" id="createPrice" name="createPrice" type="text" pattern="[0-9]+([.][0-9]{1})?" placeholder="Price" required />
+                                <input className="form-control" id="createPrice" name="createPrice" type="text" pattern="[0-9]{1,6}([.][0-9]{1})?" placeholder="Price" required />
                             </div>
                                                        
                             <div className="custom-file my-4">
