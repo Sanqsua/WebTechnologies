@@ -39,7 +39,7 @@ class Main extends React.Component {
             <h4>Description</h4>
             <p className="ml-2 mb-2 text-left">{books.description}</p>
             <p className="m-0">Contact user <strong>{books.username}</strong> to get the book!</p>
-            <a className="h1 color-black m-0" href={'mailto:' + books.email + '?subject=Your Advert: d' + books.name}>✉</a>
+            <a className="h1 color-black m-0" href={'mailto:' + books.email + '?subject=Your Advert: ' + books.name}>✉</a>
             </form>
         </div>
         </div>
